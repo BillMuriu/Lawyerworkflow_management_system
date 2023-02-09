@@ -6,11 +6,14 @@ from .models import *
 # Create your views here.
 
 
-def home(request):
-    return render(request, 'home.html')
+def registerPage(request):
+    context = {}
+    return render(request, 'register.html')
 
-def room(request):
-    return render(request, 'room.html')
+def loginPage(request):
+    context = {}
+    return render(request, 'login.html')
+
 
 def dashboard(request):
     return render(request, 'dashboard.html')
