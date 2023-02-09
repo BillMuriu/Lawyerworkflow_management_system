@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .models import *
+
 # Create your views here.
 
 
@@ -12,3 +14,8 @@ def room(request):
 
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+def matters(request):
+    matter = Matter.objects.all()
+    context = {'matter': matter}
+    return render(request, 'matters.html', context)
