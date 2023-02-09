@@ -41,7 +41,7 @@ class Task(models.Model):
         ('Completed', 'Completed'),
     )
 
-    status = models.CharField(max_length=200, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=200, choices=STATUS_CHOICES, default='Upcoming')
     title = models.CharField(max_length=200)
     description = models.TextField()
     due_date = models.DateField()

@@ -9,3 +9,6 @@ def home(request):
 
 def room(request):
     return render(request, 'room.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
