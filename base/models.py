@@ -8,10 +8,16 @@ class Matter(models.Model):
         ('Commercial', 'Commercial'),
         ('Litigation', 'Litigation'),
         ('Conveyancing', 'Conveyancing'),
-    ),
+    )
+
+    CATEGORY_CHOICES = (
+        ('Active', 'Active'),
+        ('Closed', 'Closed'),
+    )
     type = models.CharField(max_length=200, choices=TYPE_CHOICES)
     title = models.CharField(max_length=200)
     description = models.TextField()
+    category = models.CharField(max_length=200, choices=CATEGORY_CHOICES)
     ref_code = models.CharField(max_length=200, blank=True)
     open_date = models.DateField()
     close_date = models.DateField(blank=True, null=True)
@@ -29,6 +35,13 @@ class Matter(models.Model):
 
 
 class Task(models.Model):
+    STATUS_CHOICES = (
+        ('Upcoming', 'Upcoming'),
+        ('In Progress', 'In Progress'),
+        ('Completed', 'Completed'),
+    )
+
+    status = models.CharField(max_length=200, choices=STATUS_CHOICES)
     title = models.CharField(max_length=200)
     description = models.TextField()
     due_date = models.DateField()
