@@ -5,7 +5,6 @@ from base import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('room/', views.room, name='room'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('matters/', views.matters, name='matters'),
     path('register/', views.registerPage, name='register'),
