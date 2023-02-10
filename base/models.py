@@ -71,6 +71,7 @@ class Task(models.Model):
     priority = models.CharField(max_length=200, choices=PRIORITY_CHOICES, default='Low')
     matter = models.ForeignKey(Matter, on_delete=models.CASCADE)
     assigned_to = models.ManyToManyField(User, blank=True) # this should be a user
+    created_by = models.ForeignKey(User, related_name='created_tasks', on_delete=models.CASCADE)
     private = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

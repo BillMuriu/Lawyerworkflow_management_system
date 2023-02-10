@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.db.models import Q
 from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -11,14 +13,38 @@ from .decorators import unauthenticated_user
 
 # Create your views here.
 
+# create a task
+# def create_task(request):
+#     if request.method == 'POST':
+#         title = request.POST['title']
+#         description = request.POST['description']
+#         created_by = request.user
+#         task = Task.objects.create(title=title, description=description, created_by=created_by)
+#         task.save()
+#         return redirect('task_list')
+#     return render(request, 'create_task.html')
 
-@login_required
+
+
+
+
+
+
+@login_required(login_url='login')
 def tasks(request):
     user = request.user
-    tasks = Task.objects.filter(assigned_to=user)
+    tasks = Task.objects.filter(Q(assigned_to=user) | Q(created_by=user))
     is_admin = user.is_staff
     context = {'tasks': tasks, 'is_admin': is_admin}
     return render(request, 'tasks.html', context)
+
+# @login_required
+# def matters(request):
+#     user = request.user
+#     matters = Matter.objects.filter(assigned_to=user)
+#     is_admin = user.is_staff
+#     context = {'matters': matters, 'is_admin': is_admin}
+#     return render(request, 'matters.html', context)
 
 
 
