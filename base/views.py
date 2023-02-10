@@ -10,22 +10,26 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from .models import *
 from .decorators import unauthenticated_user
+from .forms import TaskForm
 
 # Create your views here.
 
 # create a task
 @login_required(login_url='login')
 def create_task(request):
-    # if request.method == 'POST':
-    #     title = request.POST['title']
-    #     description = request.POST['description']
-    #     created_by = request.user
-    #     task = Task.objects.create(title=title, description=description, created_by=created_by)
-    #     task.save()
-    #     return redirect('task_list')
-
-    context = {}
-    return render(request, 'create_task.html')
+    
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.created_by = request.user
+            task.save()
+            return redirect('tasks')
+    else:
+        form = TaskForm()
+    
+    context = {'form': form}
+    return render(request, 'create_task.html', context)
 
 
 
