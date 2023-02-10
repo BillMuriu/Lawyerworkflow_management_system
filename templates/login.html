@@ -2,6 +2,10 @@
 
 <form  method="POST" action="">
     {% csrf_token %}
+    {% for message in messages%}
+        <p>{{message}}</p>
+    {% endfor %}
+    
     {{form.username.label}}
     {{form.username}}
      <br>
