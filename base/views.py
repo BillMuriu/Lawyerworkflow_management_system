@@ -24,6 +24,8 @@ from .models import *
 def home(request):
     return render(request, 'home.html')
 
+
+
 def registerPage(request):
     form = UserCreationForm()
 
@@ -38,6 +40,8 @@ def registerPage(request):
 
     context = {'form': form}
     return render(request, 'register.html', context)
+
+    
 
 def loginPage(request):
     form = AuthenticationForm()
@@ -56,8 +60,18 @@ def loginPage(request):
     return render(request, 'login.html', context)
 
 
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
+
+
+
+
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+
+
 
 def matters(request):
     matter = Matter.objects.all()
