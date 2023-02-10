@@ -12,12 +12,13 @@ from .decorators import unauthenticated_user
 # Create your views here.
 
 
-# @login_required
-# def dashboard(request):
-#     user = request.user
-#     tasks = Task.objects.filter(assigned_to=user)
-#     is_admin = user.is_staff
-#     return render(request, 'dashboard.html', {'tasks': tasks, 'is_admin': is_admin})
+@login_required
+def tasks(request):
+    user = request.user
+    tasks = Task.objects.filter(assigned_to=user)
+    is_admin = user.is_staff
+    context = {'tasks': tasks, 'is_admin': is_admin}
+    return render(request, 'tasks.html', context)
 
 
 

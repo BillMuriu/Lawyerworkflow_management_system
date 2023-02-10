@@ -58,11 +58,17 @@ class Task(models.Model):
         ('Completed', 'Completed'),
     )
 
+    PRIORITY_CHOICES = (
+        ('High', 'High'),
+        ('Medium', 'Medium'),
+        ('Low', 'Low'),
+    )
+
     status = models.CharField(max_length=200, choices=STATUS_CHOICES, default='Upcoming')
     title = models.CharField(max_length=200)
     description = models.TextField()
     due_date = models.DateField()
-    priority = models.CharField(max_length=200)
+    priority = models.CharField(max_length=200, choices=PRIORITY_CHOICES, default='Low')
     matter = models.ForeignKey(Matter, on_delete=models.CASCADE)
     assigned_to = models.ManyToManyField(User, blank=True) # this should be a user
     private = models.BooleanField(default=False)

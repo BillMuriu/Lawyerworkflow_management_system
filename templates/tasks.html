@@ -1,0 +1,15 @@
+<h3>Tasks</h3>
+
+{% if tasks %}
+        <ul>
+        {% for task in tasks %}
+            <li>{{ task.title }} - {{ task.description }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        {% if is_admin %}
+        <p>No tasks assigned to users.</p>
+        {% else %}
+        <p>No tasks assigned to you.</p>
+        {% endif %}
+{% endif %}

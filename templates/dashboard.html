@@ -22,7 +22,7 @@
         <a href="{% url 'matters' %}">Matters</a>
         <br>
         <br>
-        <a href="">Tasks</a>
+        <a href="{% url 'tasks' %}">Tasks</a>
         <br>
         <br>
         <a href="">Event</a>
@@ -42,21 +42,6 @@
         <br>
     </div>
 
-
-  <h2>Dashboard</h2>
-    <!-- {% if tasks %}
-        <ul>
-        {% for task in tasks %}
-            <li>{{ task.task_name }} - {{ task.task_description }}</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        {% if is_admin %}
-        <p>No tasks assigned to users.</p>
-        {% else %}
-        <p>No tasks assigned to you.</p>
-        {% endif %}
-    {% endif %} -->
 
 </body>
 </html>
