@@ -64,7 +64,7 @@ class Task(models.Model):
     due_date = models.DateField()
     priority = models.CharField(max_length=200)
     matter = models.ForeignKey(Matter, on_delete=models.CASCADE)
-    assigned_to = models.CharField(max_length=200) # this should be a user
+    assigned_to = models.ManyToManyField(User, blank=True) # this should be a user
     private = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

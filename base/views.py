@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 from .models import *
+from .decorators import unauthenticated_user
 
 # Create your views here.
 
@@ -26,35 +27,34 @@ def home(request):
 
 
 
+
+@unauthenticated_user
 def registerPage(request):
-    if request.user.is_authenticated:
-        return redirect('dashboard')
-    else:
-        form = UserCreationForm()
+    form = UserCreationForm()
 
-        if request.method == 'POST':
-            form = UserCreationForm(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request, 'Account was created for ' + user)
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, 'Account was created for ' + user)
 
-                return redirect('login')
+            return redirect('login')
 
-        context = {'form': form}
-        return render(request, 'register.html', context)
+    context = {'form': form}
+    return render(request, 'register.html', context)
 
 
 
+@unauthenticated_user
 def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('dashboard')
-    else:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
-
-            user = authenticate(request, username=username, password=password)
+    form = AuthenticationForm()
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
 
             if user is not None:
                 login(request, user)
@@ -62,8 +62,9 @@ def loginPage(request):
             else:
                 messages.info(request, 'Username OR password is incorrect')
 
-        context = {}
-        return render(request, 'login.html', context)
+    context = {'form': form}
+    return render(request, 'login.html', context)
+
 
 
 @login_required(login_url='login')
@@ -76,6 +77,11 @@ def logoutUser(request):
 @login_required(login_url='login')
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+
+def userPage(request):
+    context = {}
+    return render(request, 'user.html')
 
 
 
