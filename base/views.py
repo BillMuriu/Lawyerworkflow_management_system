@@ -23,6 +23,8 @@ def create_task(request):
         if form.is_valid():
             task = form.save(commit=False)
             task.created_by = request.user
+            assigned_user = User.objects.get(username=request.POST.get('assigned_to'))
+            task.assigned_to = assigned_user
             task.save()
             return redirect('tasks')
     else:
