@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 from .models import *
@@ -29,12 +31,26 @@ def registerPage(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('login')
+
     context = {'form': form}
     return render(request, 'register.html', context)
 
 def loginPage(request):
-    context = {}
-    return render(request, 'login.html')
+    form = AuthenticationForm()
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.info(request, 'Username OR password is incorrect')
+
+    context = {'form': form}
+    return render(request, 'login.html', context)
 
 
 def dashboard(request):

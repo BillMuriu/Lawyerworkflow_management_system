@@ -10,7 +10,7 @@
     <!-- Generate the html code for a dashboard page sidebar with all the links from  base/models.py -->
     <div class="sidebar">
         <a href="{% url 'dashboard' %}">Dashboard</a>
-        <a href="">Profile</a>
+        <a href="">@{{user.username}}</a>
         <a href="">Logout</a>
     </div>
     <div class="content">
