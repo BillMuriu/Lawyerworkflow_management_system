@@ -14,15 +14,18 @@ from .decorators import unauthenticated_user
 # Create your views here.
 
 # create a task
-# def create_task(request):
-#     if request.method == 'POST':
-#         title = request.POST['title']
-#         description = request.POST['description']
-#         created_by = request.user
-#         task = Task.objects.create(title=title, description=description, created_by=created_by)
-#         task.save()
-#         return redirect('task_list')
-#     return render(request, 'create_task.html')
+@login_required(login_url='login')
+def create_task(request):
+    # if request.method == 'POST':
+    #     title = request.POST['title']
+    #     description = request.POST['description']
+    #     created_by = request.user
+    #     task = Task.objects.create(title=title, description=description, created_by=created_by)
+    #     task.save()
+    #     return redirect('task_list')
+
+    context = {}
+    return render(request, 'create_task.html')
 
 
 

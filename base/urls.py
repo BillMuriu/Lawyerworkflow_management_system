@@ -13,4 +13,7 @@ urlpatterns = [
     path('user/', views.userPage, name='user-page'),
     path('tasks/', views.tasks, name='tasks'),
 
+    #Create a Task
+    path('create_task/', views.create_task, name='create_task'),
+
 ]
