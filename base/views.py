@@ -14,17 +14,21 @@ from .forms import TaskForm
 
 # Create your views here.
 
-# create a task
+# Generate a create_task view that will allow a user to create and assign a task to another user. Only the task creator and the assigned user should be able to see the task in their task list. The task creator should be able to edit the task and the assigned user should be able to mark the task as completed. The task creator should be able to delete the task. 
+
+
+
+
 @login_required(login_url='login')
 def create_task(request):
-    
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
             task = form.save(commit=False)
             task.created_by = request.user
-            assigned_user = User.objects.get(username=request.POST.get('assigned_to'))
-            task.assigned_to = assigned_user
+            task.save()
+            assigned_users = form.cleaned_data['assigned_to']
+            task.assigned_to.set(assigned_users)
             task.save()
             return redirect('tasks')
     else:
@@ -32,8 +36,6 @@ def create_task(request):
     
     context = {'form': form}
     return render(request, 'create_task.html', context)
-
-
 
 
 
