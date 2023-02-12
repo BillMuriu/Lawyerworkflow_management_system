@@ -119,16 +119,13 @@ def userPage(request):
     return render(request, 'user.html')
 
 
+
 @login_required(login_url='login')
 def matters(request):
-    user = request.user
-    matters = Matter.objects.filter(Q(created_by=user) | Q(assigned_to=user))
-    is_admin = user.is_staff
-    context = {'matters': matters, 'is_admin': is_admin}
+    matter = Matter.objects.all()
+    context = {'matter': matter}
     return render(request, 'matters.html', context)
 
-
-    
 @login_required(login_url='login')
 def matter_detail(request, pk):
     matter = get_object_or_404(Matter, pk=pk)
