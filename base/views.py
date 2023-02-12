@@ -46,15 +46,6 @@ def tasks(request):
     context = {'tasks': tasks, 'is_admin': is_admin}
     return render(request, 'tasks.html', context)
 
-@login_required(login_url='login')
-def matter_tasks(request, pk):
-    matter = get_object_or_404(Matter, pk=pk)
-    user = request.user
-    tasks = Task.objects.filter(Q(assigned_to=user) | Q(created_by=user), matter=matter)
-    is_admin = user.is_staff
-    context = {'tasks': tasks, 'is_admin': is_admin, 'matter': matter}
-    return render(request, 'tasks.html', context)
-
 
 @login_required(login_url='login')
 def home(request):
@@ -133,3 +124,12 @@ def matter_detail(request, pk):
     is_admin = user.is_staff
     context = {'matter': matter, 'is_admin': is_admin}
     return render(request, 'matter_detail.html', context)
+
+@login_required(login_url='login')
+def matter_tasks(request, pk):
+    matter = get_object_or_404(Matter, pk=pk)
+    user = request.user
+    tasks = Task.objects.filter(Q(assigned_to=user) | Q(created_by=user), matter=matter)
+    is_admin = user.is_staff
+    context = {'tasks': tasks, 'is_admin': is_admin, 'matter': matter}
+    return render(request, 'tasks.html', context)
