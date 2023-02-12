@@ -128,7 +128,7 @@ def matters(request):
 
 @login_required(login_url='login')
 def matter_detail(request, pk):
-    matter = get_object_or_404(Matter, pk=pk)
+    matter = get_object_or_404(Matter, pk=int(pk))
     user = request.user
     is_admin = user.is_staff
     context = {'matter': matter, 'is_admin': is_admin}
