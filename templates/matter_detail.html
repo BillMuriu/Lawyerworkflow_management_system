@@ -4,3 +4,5 @@
 <p>Matter ID: {{ matter.id }}</p>
 <p>Matter Title: {{ matter.title }}</p>
 <p>Matter Description: {{ matter.description }}</p>
+
+<a href="{% url 'matter_tasks' matter.id %}">Tasks related to this Matter</a>

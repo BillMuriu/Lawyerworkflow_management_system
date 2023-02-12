@@ -137,13 +137,8 @@ class Note(models.Model):
 
 
 
-class Client(models.Model):
-    TYPE_CHOICES = (
-        ('Individual', 'Individual'),
-        ('Business', 'Business'),
-    )
-
-    type = models.CharField(max_length=200, choices=TYPE_CHOICES)
+class ClientIndividual(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     middle_name = models.CharField(max_length=200, blank=True)
@@ -160,16 +155,17 @@ class Client(models.Model):
         return self.first_name + ' ' + self.last_name
    
 
-# class User(models.Model):
-#     first_name = models.CharField(max_length=200)
-#     last_name = models.CharField(max_length=200)
-#     email = models.EmailField()
-#     phone = models.CharField(max_length=200)
-#     address = models.CharField(max_length=200)
-#     website = models.CharField(max_length=200, blank=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-#     description = models.TextField(blank=True)
+class Paralegal(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    email = models.EmailField()
+    phone = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+    website = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    description = models.TextField(blank=True)
 
-#     def __str__(self):
-#         return self.first_name + ' ' + self.last_name
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
