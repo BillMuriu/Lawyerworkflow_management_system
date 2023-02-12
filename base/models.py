@@ -38,7 +38,6 @@ class Matter(models.Model):
     close_date = models.DateField(blank=True, null=True)
     original_lawyer = models.CharField(max_length=200)
     current_lawyer = models.CharField(max_length=200)
-    assigned_to = models.CharField(max_length=200, default='string') # this should be a user
     private = models.BooleanField(default=False)
     client = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
