@@ -8,7 +8,7 @@ admin.site.register(Matter),
 admin.site.register(Task),
 admin.site.register(Event),
 admin.site.register(ClientIndividual),
-admin.site.register(Paralegal),
+admin.site.register(Lawyer),
 admin.site.register(Note),
 admin.site.register(Document),
 

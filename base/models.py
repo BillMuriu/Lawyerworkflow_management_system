@@ -6,15 +6,21 @@ from django.contrib.auth.models import User
 
 
 
-# class Task(models.Model):
-#     task_name = models.CharField(max_length=100)
-#     assigned_to = models.ManyToManyField(User, blank=True)
-#     task_description = models.TextField()
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
 
-#     def __str__(self):
-#         return self.task_name
+class Lawyer(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    email = models.EmailField()
+    phone = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
+    website = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
 
 
 
@@ -36,8 +42,8 @@ class Matter(models.Model):
     ref_code = models.CharField(max_length=200, blank=True)
     open_date = models.DateField()
     close_date = models.DateField(blank=True, null=True)
-    original_lawyer = models.CharField(max_length=200)
-    current_lawyer = models.CharField(max_length=200)
+    original_lawyer = models.ForeignKey(Lawyer, related_name='original_lawyer', on_delete=models.CASCADE, blank=True, null=True)
+    current_lawyer = models.ForeignKey(Lawyer, related_name='current_lawyer', on_delete=models.CASCADE, )
     private = models.BooleanField(default=False)
     client = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -68,7 +74,7 @@ class Task(models.Model):
     description = models.TextField()
     due_date = models.DateField()
     priority = models.CharField(max_length=200, choices=PRIORITY_CHOICES, default='Low')
-    matter = models.ForeignKey(Matter, on_delete=models.CASCADE)
+    matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
     assigned_to = models.ManyToManyField(User, blank=True) # this should be a user
     created_by = models.ForeignKey(User, related_name='created_tasks', on_delete=models.CASCADE)
     private = models.BooleanField(default=False)
@@ -89,7 +95,7 @@ class Event(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     priority = models.CharField(max_length=200)
-    matter = models.ForeignKey(Matter, on_delete=models.CASCADE)
+    matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
     assigned_to = models.CharField(max_length=200) # this should be a user
     private = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -105,7 +111,7 @@ class Document(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    matter = models.ForeignKey(Matter, on_delete=models.CASCADE)
+    matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
     category = models.CharField(max_length=200)
 
     def __str__(self):
@@ -129,7 +135,7 @@ class Note(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     private = models.BooleanField(default=False)
-    matter = models.ForeignKey(Matter, on_delete=models.CASCADE)
+    matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.subject
@@ -154,17 +160,3 @@ class ClientIndividual(models.Model):
         return self.first_name + ' ' + self.last_name
    
 
-class Paralegal(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    email = models.EmailField()
-    phone = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
-    website = models.CharField(max_length=200, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.first_name + ' ' + self.last_name
