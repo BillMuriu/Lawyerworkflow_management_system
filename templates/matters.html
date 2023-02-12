@@ -2,10 +2,12 @@
 
 <h3>
     {% for i in matter %}
-    <a href="">{{ i.title }}</a>
+    <h4>{{ i.title }}</h4>
     <h3>{{ i.description }}</h3>
     <h3>{{ i.category }}</h3>
     <br>
+    <!-- give me a link for the matter_tasks -->
+    <a href="matter_tasks/{{ i.id }}">Matter Tasks</a>
     <br>
     {% endfor %}
 
