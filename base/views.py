@@ -48,7 +48,7 @@ def matters(request):
     is_admin = user.is_staff
     context = {'matters': matters, 'is_admin': is_admin}
     return render(request, 'matters.html', context)
-    
+
 
 @login_required(login_url='login')
 def create_matter(request):
@@ -58,13 +58,15 @@ def create_matter(request):
             matter = form.save(commit=False)
             matter.original_lawyer = request.user.lawyer
             matter.save()
-            form.save_m2m()
+            participants = form.cleaned_data['participants']
+            matter.participants.set(participants)
+            matter.save()
             return redirect('matters')
     else:
         form = MatterForm()
-    return render(request, 'create_matter.html', {'form': form})
-
-
+    
+    context = {'form': form}
+    return render(request, 'create_matter.html', context)
 
 
 
@@ -84,6 +86,7 @@ def matter_tasks(request, pk):
     is_admin = user.is_staff
     context = {'tasks': tasks, 'is_admin': is_admin, 'matter': matter}
     return render(request, 'tasks.html', context)
+    
 
 @login_required(login_url='login')
 def create_task(request):
