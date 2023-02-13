@@ -20,17 +20,16 @@ from .forms import TaskForm
 
 @login_required(login_url='login')
 def matters(request):
-    user = request.user
-    user_lawyer = user.lawyer
-    if user_lawyer:
-        # If the user is a lawyer, show the matters where they are either the original lawyer or the current lawyer
-        matters = Matter.objects.filter(Q(original_lawyer=user_lawyer) | Q(current_lawyer=user_lawyer))
-    else:
-        # If the user is not a lawyer, show the matters where they are the client
-        matters = Matter.objects.filter(client=user)
+        user = request.user
+        try:
+            lawyer = user.lawyer
+            matters = Matter.objects.filter(Q(original_lawyer=lawyer) | Q(current_lawyer=lawyer))
+        except Lawyer.DoesNotExist:
+            matters = []
+        is_admin = user.is_staff
+        context = {'matters': matters, 'is_admin': is_admin}
+        return render(request, 'matters.html', context)
 
-    context = {'matters': matters}
-    return render(request, 'matters.html', context)
 
 
 @login_required(login_url='login')
