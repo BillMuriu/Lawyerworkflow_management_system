@@ -143,7 +143,7 @@ class Note(models.Model):
 
 
 
-class ClientIndividual(models.Model):
+class IndividualClient(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
@@ -159,5 +159,21 @@ class ClientIndividual(models.Model):
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
+
+class BusinessClient(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    primary_phone = models.CharField(max_length=200)
+    secondary_phone = models.CharField(max_length=200, blank=True)
+    address = models.CharField(max_length=200)
+    website = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
    
 
