@@ -11,7 +11,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from .models import *
 from .decorators import unauthenticated_user
-from .forms import TaskForm
+from .forms import TaskForm, MatterForm
 
 # Create your views here.
 
@@ -48,6 +48,22 @@ def matters(request):
     is_admin = user.is_staff
     context = {'matters': matters, 'is_admin': is_admin}
     return render(request, 'matters.html', context)
+    
+
+@login_required(login_url='login')
+def create_matter(request):
+    if request.method == 'POST':
+        form = MatterForm(request.POST)
+        if form.is_valid():
+            matter = form.save(commit=False)
+            matter.original_lawyer = request.user.lawyer
+            matter.save()
+            form.save_m2m()
+            return redirect('matters')
+    else:
+        form = MatterForm()
+    return render(request, 'create_matter.html', {'form': form})
+
 
 
 
