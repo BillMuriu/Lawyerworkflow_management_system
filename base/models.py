@@ -80,7 +80,8 @@ class Matter(models.Model):
     current_lawyer = models.ForeignKey(Lawyer, related_name='current_lawyer', on_delete=models.CASCADE)
     participants = models.ManyToManyField(User, blank=True)
     private = models.BooleanField(default=False)
-    client = models.CharField(max_length=200)
+    individual_clients = models.ManyToManyField(IndividualClient, blank=True)
+    business_client = models.ForeignKey(BusinessClient, on_delete=models.CASCADE, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -112,8 +113,6 @@ class Task(models.Model):
     matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
     assigned_to = models.ManyToManyField(User, blank=True) # this should be a user
     created_by = models.ForeignKey(User, related_name='created_tasks', on_delete=models.CASCADE)
-    Individual_client = models.ForeignKey(IndividualClient, on_delete=models.CASCADE, blank=True, null=True)
-    Business_client = models.ForeignKey(BusinessClient, on_delete=models.CASCADE, blank=True, null=True)
     private = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
