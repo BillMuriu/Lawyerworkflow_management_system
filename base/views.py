@@ -35,15 +35,20 @@ def matters(request):
     except IndividualClient.DoesNotExist:
         individual_client = None
 
-    matters = Matter.objects.filter(
-        Q(original_lawyer=lawyer) | Q(current_lawyer=lawyer) |
-        Q(business_client=business_client) | Q(individual_client=individual_client) |
-        Q(participants=user)
-    )
+    matters_filter = Q(original_lawyer=lawyer) | Q(current_lawyer=lawyer)
+
+    if business_client:
+        matters_filter |= Q(business_client=business_client)
+
+    if individual_client:
+        matters_filter |= Q(individual_client=individual_client)
+
+    matters = Matter.objects.filter(matters_filter)
 
     is_admin = user.is_staff
     context = {'matters': matters, 'is_admin': is_admin}
     return render(request, 'matters.html', context)
+
 
 
 
