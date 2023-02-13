@@ -1,7 +1,7 @@
 <h1>Matters</h1>
 
 <h3>
-    {% for i in matter %}
+    {% for i in matters %}
     <a href="{% url 'matter_detail' i.id %}">{{ i.title }}</a>
     <h3>{{ i.description }}</h3>
     <h3>{{ i.category }}</h3>

@@ -44,6 +44,7 @@ class Matter(models.Model):
     close_date = models.DateField(blank=True, null=True)
     original_lawyer = models.ForeignKey(Lawyer, related_name='original_lawyer', on_delete=models.CASCADE)
     current_lawyer = models.ForeignKey(Lawyer, related_name='current_lawyer', on_delete=models.CASCADE)
+    participants = models.ManyToManyField(User, blank=True)
     private = models.BooleanField(default=False)
     client = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
