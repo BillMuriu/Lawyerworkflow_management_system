@@ -17,18 +17,17 @@ from .forms import TaskForm
 
 # Generate a create_task view that will allow a user to create and assign a task to another user. Only the task creator and the assigned user should be able to see the task in their task list. The task creator should be able to edit the task and the assigned user should be able to mark the task as completed. The task creator should be able to delete the task. 
 
-
 @login_required(login_url='login')
 def matters(request):
-        user = request.user
-        try:
-            lawyer = user.lawyer
-            matters = Matter.objects.filter(Q(original_lawyer=lawyer) | Q(current_lawyer=lawyer))
-        except Lawyer.DoesNotExist:
-            matters = []
-        is_admin = user.is_staff
-        context = {'matters': matters, 'is_admin': is_admin}
-        return render(request, 'matters.html', context)
+    user = request.user
+    try:
+        lawyer = Lawyer.objects.get(user=user)
+    except Lawyer.DoesNotExist:
+        lawyer = None
+    matters = Matter.objects.filter(Q(original_lawyer=lawyer) | Q(current_lawyer=lawyer))
+    is_admin = user.is_staff
+    context = {'matters': matters, 'is_admin': is_admin}
+    return render(request, 'matters.html', context)
 
 
 
