@@ -23,6 +23,40 @@ class Lawyer(models.Model):
         return self.first_name + ' ' + self.last_name
 
 
+class IndividualClient(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=200)
+    last_name = models.CharField(max_length=200)
+    middle_name = models.CharField(max_length=200, blank=True)
+    email = models.EmailField()
+    primary_phone = models.CharField(max_length=200)
+    secondary_phone = models.CharField(max_length=200, blank=True)
+    address = models.CharField(max_length=200)
+    website = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
+
+class BusinessClient(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    primary_phone = models.CharField(max_length=200)
+    secondary_phone = models.CharField(max_length=200, blank=True)
+    address = models.CharField(max_length=200)
+    website = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+
 
 class Matter(models.Model):
     TYPE_CHOICES = (
@@ -78,6 +112,8 @@ class Task(models.Model):
     matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
     assigned_to = models.ManyToManyField(User, blank=True) # this should be a user
     created_by = models.ForeignKey(User, related_name='created_tasks', on_delete=models.CASCADE)
+    Individual_client = models.ForeignKey(IndividualClient, on_delete=models.CASCADE, blank=True, null=True)
+    Business_client = models.ForeignKey(BusinessClient, on_delete=models.CASCADE, blank=True, null=True)
     private = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -143,37 +179,6 @@ class Note(models.Model):
 
 
 
-class IndividualClient(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    middle_name = models.CharField(max_length=200, blank=True)
-    email = models.EmailField()
-    primary_phone = models.CharField(max_length=200)
-    secondary_phone = models.CharField(max_length=200, blank=True)
-    address = models.CharField(max_length=200)
-    website = models.CharField(max_length=200, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    description = models.TextField(blank=True)
 
-    def __str__(self):
-        return self.first_name + ' ' + self.last_name
-
-
-class BusinessClient(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200)
-    email = models.EmailField()
-    primary_phone = models.CharField(max_length=200)
-    secondary_phone = models.CharField(max_length=200, blank=True)
-    address = models.CharField(max_length=200)
-    website = models.CharField(max_length=200, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.name
    
 

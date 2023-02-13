@@ -24,10 +24,24 @@ def matters(request):
         lawyer = Lawyer.objects.get(user=user)
     except Lawyer.DoesNotExist:
         lawyer = None
-    matters = Matter.objects.filter(Q(original_lawyer=lawyer) | Q(current_lawyer=lawyer))
+        
+    try:
+        business_client = BusinessClient.objects.get(user=user)
+    except BusinessClient.DoesNotExist:
+        business_client = None
+        
+    try:
+        individual_client = IndividualClient.objects.get(user=user)
+    except IndividualClient.DoesNotExist:
+        individual_client = None
+        
+    matters = Matter.objects.filter(Q(original_lawyer=lawyer) | Q(current_lawyer=lawyer) | Q(client=business_client) | Q(client=individual_client))
+    
     is_admin = user.is_staff
     context = {'matters': matters, 'is_admin': is_admin}
     return render(request, 'matters.html', context)
+
+
 
 
 
