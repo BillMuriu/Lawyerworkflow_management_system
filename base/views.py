@@ -18,7 +18,37 @@ from .forms import TaskForm
 # Generate a create_task view that will allow a user to create and assign a task to another user. Only the task creator and the assigned user should be able to see the task in their task list. The task creator should be able to edit the task and the assigned user should be able to mark the task as completed. The task creator should be able to delete the task. 
 
 
+@login_required(login_url='login')
+def matters(request):
+    user = request.user
+    user_lawyer = user.lawyer
+    if user_lawyer:
+        # If the user is a lawyer, show the matters where they are either the original lawyer or the current lawyer
+        matters = Matter.objects.filter(Q(original_lawyer=user_lawyer) | Q(current_lawyer=user_lawyer))
+    else:
+        # If the user is not a lawyer, show the matters where they are the client
+        matters = Matter.objects.filter(client=user)
 
+    context = {'matters': matters}
+    return render(request, 'matters.html', context)
+
+
+@login_required(login_url='login')
+def matter_detail(request, pk):
+    matter = get_object_or_404(Matter, pk=int(pk))
+    user = request.user
+    is_admin = user.is_staff
+    context = {'matter': matter, 'is_admin': is_admin}
+    return render(request, 'matter_detail.html', context)
+
+@login_required(login_url='login')
+def matter_tasks(request, pk):
+    matter = get_object_or_404(Matter, pk=pk)
+    user = request.user
+    tasks = Task.objects.filter(Q(assigned_to=user) | Q(created_by=user), matter=matter)
+    is_admin = user.is_staff
+    context = {'tasks': tasks, 'is_admin': is_admin, 'matter': matter}
+    return render(request, 'tasks.html', context)
 
 @login_required(login_url='login')
 def create_task(request):
@@ -112,28 +142,7 @@ def userPage(request):
 
 
 
-@login_required(login_url='login')
-def matters(request):
-    matter = Matter.objects.all()
-    context = {'matter': matter}
-    return render(request, 'matters.html', context)
 
-@login_required(login_url='login')
-def matter_detail(request, pk):
-    matter = get_object_or_404(Matter, pk=int(pk))
-    user = request.user
-    is_admin = user.is_staff
-    context = {'matter': matter, 'is_admin': is_admin}
-    return render(request, 'matter_detail.html', context)
-
-@login_required(login_url='login')
-def matter_tasks(request, pk):
-    matter = get_object_or_404(Matter, pk=pk)
-    user = request.user
-    tasks = Task.objects.filter(Q(assigned_to=user) | Q(created_by=user), matter=matter)
-    is_admin = user.is_staff
-    context = {'tasks': tasks, 'is_admin': is_admin, 'matter': matter}
-    return render(request, 'tasks.html', context)
 
 
 
