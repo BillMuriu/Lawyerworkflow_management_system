@@ -8,8 +8,9 @@
 {% block content %}
 
 <section class="container2">
-    <header>Registration Form</header>
-    <form action="#" class="form">
+    <header>Matter Creation Form</header>
+    <form action="#" class="form" method="POST">
+        {% csrf_token %}
     
       <label for="">Type</label>
       <div class="column">
@@ -20,17 +21,18 @@
             <option>Conveyancing</option>
             <option>Litigation</option>
           </select>
+          {{ form.type }}
         </div>
       </div>
       <div class="input-box">
         <label>Title</label>
-        <input type="text" placeholder="Enter Title" required />
+        {{ form.title }}
       </div>
 
       <div class="input-box">
         <label>Description</label>
         <textarea name="" id="" cols="30" rows="10" placeholder="Enter the description of your matter"></textarea>
-        <!-- <input type="text" placeholder="Enter email address" required /> -->
+        {{ form.description }}}
       </div>
 
       <label for="">Category</label>
@@ -41,13 +43,15 @@
             <option>Active</option>
             <option>Closed</option>
           </select>
+            {{ form.category }} 
         </div>
       </div>
 
       <div class="column">
         <div class="input-box">
           <label>ref code</label>
-          <input type="number" placeholder="Enter a reference code" required />
+            <input type="text" placeholder="Enter ref code" required />
+            {{ form.ref_code }}
         </div>
       </div>
 
@@ -56,11 +60,13 @@
       <div class="column">
         <div class="input-box">
             <label>start date</label>
-            <input type="date" placeholder="Enter birth date" required />
+            <input type="date" placeholder="Enter birth date" />
+            {{ form.start_date }}
           </div>
         <div class="input-box">
           <label>close date</label>
-          <input type="date" placeholder="Enter birth date" />
+            <input type="date" placeholder="Enter birth date" />
+            {{ form.close_date }}
         </div>
       </div>
 
@@ -70,8 +76,9 @@
             <div class="select-box">
                 <select>
                   <option hidden>Original Lawyer</option>
-                  <option>Active</option>
-                  <option>Closed</option>
+                  {% for lawyer in lawyers %}
+                    <option>{{ lawyer }}</option>
+                  {% endfor %}
                 </select>
             </div>
         </div>
@@ -81,8 +88,9 @@
             <div class="select-box">
                 <select>
                   <option hidden>Active Lawyer</option>
-                  <option>Active</option>
-                  <option>Closed</option>
+                    {% for lawyer in lawyers %}
+                        <option>{{ lawyer }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
@@ -98,63 +106,39 @@
         </div>
 
         <ul class="list-items">
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">HTML & CSS</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">Bootstrap</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">JavaScript</span>
-            </li>
+            {% for participant in participants %}
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">{{ participant }}</span>
+                </li>
+            {% endfor %}
       
         </ul>
       </div>
 
-      <div class="checkbox-container">
-        <input type="checkbox" id="cb1" disabled checked>
-        <label for="cb1">Checkbox 1</label>
-      </div>
 
 
 
       <div class="gender-box">
         <h3>Individual Client</h3>
         <div class="select-btn" id="select-btn-2">
-          <span class="btn-text">Select Language</span>
+          <span class="btn-text">Select Client</span>
           <span class="arrow-dwn">
               <i class="fa-solid fa-chevron-down"></i>
           </span>
         </div>
 
         <ul class="list-items">
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">HTML & CSS</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">Bootstrap</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">JavaScript</span>
-            </li>
+            {% for client in individual_clients %}
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">{{ client }}</span>
+                </li>
+            {% endfor %}
       
         </ul>
       </div>
@@ -169,24 +153,14 @@
         </div>
 
         <ul class="list-items">
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">HTML & CSS</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">Bootstrap</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">JavaScript</span>
-            </li>
+            {% for client in business_clients %}
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">{{ client }}</span>
+                </li>
+            {% endfor %}
       
         </ul>
       </div>
@@ -194,15 +168,6 @@
     </form>
 </section>
 
+
 {% endblock %}
 
-<h3>New Matter</h3>
-
-
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-
-
-    <input type="submit" name="Submit">
-</form>
