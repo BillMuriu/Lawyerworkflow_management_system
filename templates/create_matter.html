@@ -1,3 +1,201 @@
+{% extends 'main.html' %}
+
+<!-- load the static css and js files -->
+{% load static %}
+
+
+
+{% block content %}
+
+<section class="container2">
+    <header>Registration Form</header>
+    <form action="#" class="form">
+    
+      <label for="">Type</label>
+      <div class="column">
+        <div class="select-box">
+          <select>
+            <option hidden>Type</option>
+            <option>Litigation</option>
+            <option>Conveyancing</option>
+            <option>Litigation</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-box">
+        <label>Title</label>
+        <input type="text" placeholder="Enter Title" required />
+      </div>
+
+      <div class="input-box">
+        <label>Description</label>
+        <textarea name="" id="" cols="30" rows="10" placeholder="Enter the description of your matter"></textarea>
+        <!-- <input type="text" placeholder="Enter email address" required /> -->
+      </div>
+
+      <label for="">Category</label>
+      <div class="column">
+        <div class="select-box">
+          <select>
+            <option hidden></option>
+            <option>Active</option>
+            <option>Closed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="input-box">
+          <label>ref code</label>
+          <input type="number" placeholder="Enter a reference code" required />
+        </div>
+      </div>
+
+
+
+      <div class="column">
+        <div class="input-box">
+            <label>start date</label>
+            <input type="date" placeholder="Enter birth date" required />
+          </div>
+        <div class="input-box">
+          <label>close date</label>
+          <input type="date" placeholder="Enter birth date" />
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="input-box">
+            <label>Original Lawyer</label>
+            <div class="select-box">
+                <select>
+                  <option hidden>Original Lawyer</option>
+                  <option>Active</option>
+                  <option>Closed</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="input-box">
+            <label>Active Lawyer</label>
+            <div class="select-box">
+                <select>
+                  <option hidden>Active Lawyer</option>
+                  <option>Active</option>
+                  <option>Closed</option>
+                </select>
+            </div>
+        </div>
+      </div>
+      
+      <div class="gender-box">
+        <h3>Participants</h3>
+        <div class="select-btn" id="select-btn-1">
+          <span class="btn-text">Select Language</span>
+          <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </div>
+
+        <ul class="list-items">
+            <li class="item">
+                <span class="checkbox">
+                    <i class="fa-solid fa-check check-icon"></i>
+                </span>
+                <span class="item-text">HTML & CSS</span>
+            </li>
+            <li class="item">
+                <span class="checkbox">
+                    <i class="fa-solid fa-check check-icon"></i>
+                </span>
+                <span class="item-text">Bootstrap</span>
+            </li>
+            <li class="item">
+                <span class="checkbox">
+                    <i class="fa-solid fa-check check-icon"></i>
+                </span>
+                <span class="item-text">JavaScript</span>
+            </li>
+      
+        </ul>
+      </div>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="cb1" disabled checked>
+        <label for="cb1">Checkbox 1</label>
+      </div>
+
+
+
+      <div class="gender-box">
+        <h3>Individual Client</h3>
+        <div class="select-btn" id="select-btn-2">
+          <span class="btn-text">Select Language</span>
+          <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </div>
+
+        <ul class="list-items">
+            <li class="item">
+                <span class="checkbox">
+                    <i class="fa-solid fa-check check-icon"></i>
+                </span>
+                <span class="item-text">HTML & CSS</span>
+            </li>
+            <li class="item">
+                <span class="checkbox">
+                    <i class="fa-solid fa-check check-icon"></i>
+                </span>
+                <span class="item-text">Bootstrap</span>
+            </li>
+            <li class="item">
+                <span class="checkbox">
+                    <i class="fa-solid fa-check check-icon"></i>
+                </span>
+                <span class="item-text">JavaScript</span>
+            </li>
+      
+        </ul>
+      </div>
+
+      <div class="gender-box">
+        <h3>Business Client</h3>
+        <div class="select-btn" id="select-btn-3">
+          <span class="btn-text">Select Language</span>
+          <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </div>
+
+        <ul class="list-items">
+            <li class="item">
+                <span class="checkbox">
+                    <i class="fa-solid fa-check check-icon"></i>
+                </span>
+                <span class="item-text">HTML & CSS</span>
+            </li>
+            <li class="item">
+                <span class="checkbox">
+                    <i class="fa-solid fa-check check-icon"></i>
+                </span>
+                <span class="item-text">Bootstrap</span>
+            </li>
+            <li class="item">
+                <span class="checkbox">
+                    <i class="fa-solid fa-check check-icon"></i>
+                </span>
+                <span class="item-text">JavaScript</span>
+            </li>
+      
+        </ul>
+      </div>
+      <button>Submit</button>
+    </form>
+</section>
+
+{% endblock %}
+
 <h3>New Matter</h3>
 
 
