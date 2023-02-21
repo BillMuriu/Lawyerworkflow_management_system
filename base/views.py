@@ -61,6 +61,7 @@ def create_matter(request):
             participants = form.cleaned_data['participants']
             matter.participants.set(participants)
             matter.save()
+            form.save_m2m()
             return redirect('matters')
     else:
         form = MatterForm()
@@ -86,7 +87,7 @@ def matter_tasks(request, pk):
     is_admin = user.is_staff
     context = {'tasks': tasks, 'is_admin': is_admin, 'matter': matter}
     return render(request, 'tasks.html', context)
-    
+
 
 @login_required(login_url='login')
 def create_task(request):
@@ -99,6 +100,7 @@ def create_task(request):
             assigned_users = form.cleaned_data['assigned_to']
             task.assigned_to.set(assigned_users)
             task.save()
+            form.save_m2m()
             return redirect('tasks')
     else:
         form = TaskForm()

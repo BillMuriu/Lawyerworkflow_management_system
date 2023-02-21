@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="top">
+                <div class="logo-wrapper">
+                    <div class="logo">
+                        <i class="bx bxl-codepen"></i>
+                        <span>LawYer</span>
+                    </div>
+                </div>
+                <i class="bx bx-menu" id="btn"></i>
+            </div>
+            <div class="ul-wrapper">
+                <ul>
+                    <li>
+                        <a href="">
+                            <i class="bx bxs-grid-alt"></i>
+                            <span class="nav-item">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="bx bxs-grid-alt"></i>
+                            <span class="nav-item">Matters</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="bx bxs-grid-alt"></i>
+                            <span class="nav-item">Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="bx bxs-grid-alt"></i>
+                            <span class="nav-item">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="container">
+                <div class="top_bar">
+                    <div class="top_bar_left">
+                        <h1>Dashboard</h1>
+                    </div>
+                    <div class="top_bar_right">
+                        <div class="search">
+                            <input type="text" placeholder="Search">
+                            <i class="bx bx-search"></i>
+                        </div>
+                        <div class="user">
+                            <img src="brain.jpg" alt="" class="user-img">
+                            <div>
+                                <p class="bold">Clint</p>
+                                <p>Admin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="the_content">
+                    <div class="cardss">
+                        <section class="container2">
+                            <header>Registration Form</header>
+                            <form action="#" class="form">
+                            
+                              <label for="">Type</label>
+                              <div class="column">
+                                <div class="select-box">
+                                  <select>
+                                    <option hidden>Type</option>
+                                    <option>Litigation</option>
+                                    <option>Conveyancing</option>
+                                    <option>Litigation</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="input-box">
+                                <label>Title</label>
+                                <input type="text" placeholder="Enter Title" required />
+                              </div>
+                      
+                              <div class="input-box">
+                                <label>Description</label>
+                                <textarea name="" id="" cols="30" rows="10" placeholder="Enter the description of your matter"></textarea>
+                                <!-- <input type="text" placeholder="Enter email address" required /> -->
+                              </div>
+
+                              <label for="">Category</label>
+                              <div class="column">
+                                <div class="select-box">
+                                  <select>
+                                    <option hidden></option>
+                                    <option>Active</option>
+                                    <option>Closed</option>
+                                  </select>
+                                </div>
+                              </div>
+                      
+                              <div class="column">
+                                <div class="input-box">
+                                  <label>ref code</label>
+                                  <input type="number" placeholder="Enter a reference code" required />
+                                </div>
+                              </div>
+
+
+
+                              <div class="column">
+                                <div class="input-box">
+                                    <label>start date</label>
+                                    <input type="date" placeholder="Enter birth date" required />
+                                  </div>
+                                <div class="input-box">
+                                  <label>close date</label>
+                                  <input type="date" placeholder="Enter birth date" />
+                                </div>
+                              </div>
+
+                              <div class="column">
+                                <div class="input-box">
+                                    <label>Original Lawyer</label>
+                                    <div class="select-box">
+                                        <select>
+                                          <option hidden>Original Lawyer</option>
+                                          <option>Active</option>
+                                          <option>Closed</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="input-box">
+                                    <label>Active Lawyer</label>
+                                    <div class="select-box">
+                                        <select>
+                                          <option hidden>Active Lawyer</option>
+                                          <option>Active</option>
+                                          <option>Closed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                              </div>
+                              
+                              <div class="gender-box">
+                                <h3>Participants</h3>
+                                <div class="select-btn" id="select-btn-1">
+                                  <span class="btn-text">Select Language</span>
+                                  <span class="arrow-dwn">
+                                      <i class="fa-solid fa-chevron-down"></i>
+                                  </span>
+                                </div>
+                  
+                                <ul class="list-items">
+                                    <li class="item">
+                                        <span class="checkbox">
+                                            <i class="fa-solid fa-check check-icon"></i>
+                                        </span>
+                                        <span class="item-text">HTML & CSS</span>
+                                    </li>
+                                    <li class="item">
+                                        <span class="checkbox">
+                                            <i class="fa-solid fa-check check-icon"></i>
+                                        </span>
+                                        <span class="item-text">Bootstrap</span>
+                                    </li>
+                                    <li class="item">
+                                        <span class="checkbox">
+                                            <i class="fa-solid fa-check check-icon"></i>
+                                        </span>
+                                        <span class="item-text">JavaScript</span>
+                                    </li>
+                              
+                                </ul>
+                              </div>
+
+                              <div class="checkbox-container">
+                                <input type="checkbox" id="cb1" disabled checked>
+                                <label for="cb1">Checkbox 1</label>
+                              </div>
+
+
+
+                              <div class="gender-box">
+                                <h3>Individual Client</h3>
+                                <div class="select-btn" id="select-btn-2">
+                                  <span class="btn-text">Select Language</span>
+                                  <span class="arrow-dwn">
+                                      <i class="fa-solid fa-chevron-down"></i>
+                                  </span>
+                                </div>
+                  
+                                <ul class="list-items">
+                                    <li class="item">
+                                        <span class="checkbox">
+                                            <i class="fa-solid fa-check check-icon"></i>
+                                        </span>
+                                        <span class="item-text">HTML & CSS</span>
+                                    </li>
+                                    <li class="item">
+                                        <span class="checkbox">
+                                            <i class="fa-solid fa-check check-icon"></i>
+                                        </span>
+                                        <span class="item-text">Bootstrap</span>
+                                    </li>
+                                    <li class="item">
+                                        <span class="checkbox">
+                                            <i class="fa-solid fa-check check-icon"></i>
+                                        </span>
+                                        <span class="item-text">JavaScript</span>
+                                    </li>
+                              
+                                </ul>
+                              </div>
+
+                              <div class="gender-box">
+                                <h3>Business Client</h3>
+                                <div class="select-btn" id="select-btn-3">
+                                  <span class="btn-text">Select Language</span>
+                                  <span class="arrow-dwn">
+                                      <i class="fa-solid fa-chevron-down"></i>
+                                  </span>
+                                </div>
+                  
+                                <ul class="list-items">
+                                    <li class="item">
+                                        <span class="checkbox">
+                                            <i class="fa-solid fa-check check-icon"></i>
+                                        </span>
+                                        <span class="item-text">HTML & CSS</span>
+                                    </li>
+                                    <li class="item">
+                                        <span class="checkbox">
+                                            <i class="fa-solid fa-check check-icon"></i>
+                                        </span>
+                                        <span class="item-text">Bootstrap</span>
+                                    </li>
+                                    <li class="item">
+                                        <span class="checkbox">
+                                            <i class="fa-solid fa-check check-icon"></i>
+                                        </span>
+                                        <span class="item-text">JavaScript</span>
+                                    </li>
+                              
+                                </ul>
+                              </div>
+                              <button>Submit</button>
+                            </form>
+                        </section>                      
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+
+<script src="scripts.js"></script>
+</html>
