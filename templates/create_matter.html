@@ -16,12 +16,12 @@
       <div class="column">
         <div class="select-box">
           <select>
+
             <option hidden>Type</option>
-            <option>Litigation</option>
-            <option>Conveyancing</option>
-            <option>Litigation</option>
+            {% for matter_type in form.type %}
+              <option>{{ matter_type }}</option>
+            {% endfor %}
           </select>
-          {{ form.type }}
         </div>
       </div>
       <div class="input-box">

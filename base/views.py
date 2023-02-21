@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.db import migrations
 from django.db.models import Q
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
@@ -69,6 +69,33 @@ def create_matter(request):
     
     context = {'form': form}
     return render(request, 'create_matter.html', context)
+
+@login_required(login_url='login')
+def update_matter(request, pk):
+    user = request.user
+
+    # Get the Matter object to be updated
+    try:
+        matter = Matter.objects.get(pk=pk)
+    except Matter.DoesNotExist:
+        return HttpResponseNotFound()
+
+    # Check if the logged-in user has permission to update this matter
+    if not user.is_staff and user not in matter.participants.all() and user != matter.original_lawyer:
+        return HttpResponseForbidden()
+
+    if request.method == 'POST':
+        form = MatterForm(request.POST, instance=matter)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Matter updated successfully.')
+            return redirect('matters')
+    else:
+        form = MatterForm(instance=matter)
+
+    context = {'form': form}
+    return render(request, 'update_matter.html', context)
+
 
 
 
