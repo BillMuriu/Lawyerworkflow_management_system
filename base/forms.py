@@ -8,7 +8,7 @@ class TaskForm(ModelForm):
     class Meta:
         model = Task
         fields = '__all__'
-        exclude = ['created_by', 'created_at', 'updated_at']
+        exclude = ['created_by', 'status', 'created_at', 'updated_at']
         widgets = {
             'assigned_to': forms.CheckboxSelectMultiple(),
         }

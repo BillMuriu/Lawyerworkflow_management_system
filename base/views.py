@@ -127,15 +127,6 @@ def matter_tasks(request, pk):
     return render(request, 'tasks.html', context)
 
 
-
-@login_required(login_url='login')
-def tasks(request):
-    user = request.user
-    tasks = Task.objects.filter(Q(assigned_to=user) | Q(created_by=user))
-    is_admin = user.is_staff
-    context = {'tasks': tasks, 'is_admin': is_admin}
-    return render(request, 'tasks.html', context)
-
 @login_required(login_url='login')
 def create_task(request):
     if request.method == 'POST':
@@ -171,7 +162,6 @@ def task_detail(request, task_id):
         return redirect('tasks')
 
 
-
 @login_required(login_url='login')
 def update_task(request, task_id):
     task = get_object_or_404(Task, pk=task_id)
@@ -193,8 +183,25 @@ def update_task(request, task_id):
     return render(request, 'update_task.html', context)
 
 
+@login_required(login_url='login')
+def delete_task(request, task_id):
+    task = get_object_or_404(Task, pk=task_id)
+    if request.user.is_staff or request.user == task.created_by:
+        task.delete()
+        messages.success(request, 'Task deleted successfully.')
+        return redirect('tasks')
+    else:
+        messages.error(request, 'You are not authorized to delete this Task.')
+        return redirect('task_detail', task_id=task_id)
 
 
+@login_required(login_url='login')
+def tasks(request):
+    user = request.user
+    tasks = Task.objects.filter(Q(assigned_to=user) | Q(created_by=user))
+    is_admin = user.is_staff
+    context = {'tasks': tasks, 'is_admin': is_admin}
+    return render(request, 'tasks.html', context)
 
 
 @login_required(login_url='login')

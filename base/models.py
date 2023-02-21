@@ -113,6 +113,7 @@ class Task(models.Model):
     matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
     assigned_to = models.ManyToManyField(User, blank=True) # this should be a user
     created_by = models.ForeignKey(User, related_name='created_tasks', on_delete=models.CASCADE)
+    modified_by = models.ForeignKey(User, related_name='modified_tasks', on_delete=models.CASCADE, blank=True, null=True)
     private = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -1,0 +1,19 @@
+<h1>Task Detail</h1>
+
+<p>Task ID: {{ task.id }}</p>
+<p>Task Title: {{ task.title }}</p>
+<p>Task Description: {{ task.description }}</p>
+<p>Task Due Date: {{ task.due_date }}</p>
+<p>Task Created By: {{ task.created_by }}</p>
+
+<p>Assigned To:</p>
+<ul>
+{% for user in task.assigned_to.all %}
+    <li>{{ user }}</li>
+{% empty %}
+    <li>No users assigned</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'update_task' task.id %}">Update this Task</a>
+<a href="{% url 'delete_task' task.id %}">Delete this Task</a>
