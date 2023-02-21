@@ -127,6 +127,15 @@ def matter_tasks(request, pk):
     return render(request, 'tasks.html', context)
 
 
+
+@login_required(login_url='login')
+def tasks(request):
+    user = request.user
+    tasks = Task.objects.filter(Q(assigned_to=user) | Q(created_by=user))
+    is_admin = user.is_staff
+    context = {'tasks': tasks, 'is_admin': is_admin}
+    return render(request, 'tasks.html', context)
+
 @login_required(login_url='login')
 def create_task(request):
     if request.method == 'POST':
@@ -146,14 +155,46 @@ def create_task(request):
     context = {'form': form}
     return render(request, 'create_task.html', context)
 
+@login_required(login_url='login')
+def task_detail(request, task_id):
+    task = get_object_or_404(Task, pk=task_id)
+
+    # check if the user is assigned to the task or is the creator of the task
+    is_assigned = request.user in task.assigned_to.all()
+    is_creator = request.user == task.created_by
+
+    if is_assigned or is_creator:
+        context = {'task': task}
+        return render(request, 'task_detail.html', context)
+    else:
+        messages.error(request, 'You are not authorized to view this task.')
+        return redirect('tasks')
+
+
 
 @login_required(login_url='login')
-def tasks(request):
-    user = request.user
-    tasks = Task.objects.filter(Q(assigned_to=user) | Q(created_by=user))
-    is_admin = user.is_staff
-    context = {'tasks': tasks, 'is_admin': is_admin}
-    return render(request, 'tasks.html', context)
+def update_task(request, task_id):
+    task = get_object_or_404(Task, pk=task_id)
+
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.modified_by = request.user
+            task.save()
+            assigned_users = form.cleaned_data['assigned_to']
+            task.assigned_to.set(assigned_users)
+            form.save_m2m()
+            return redirect('task_detail', task_id=task_id)
+    else:
+        form = TaskForm(instance=task)
+
+    context = {'form': form, 'task': task}
+    return render(request, 'update_task.html', context)
+
+
+
+
 
 
 @login_required(login_url='login')
