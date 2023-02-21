@@ -71,6 +71,14 @@ def create_matter(request):
     return render(request, 'create_matter.html', context)
 
 @login_required(login_url='login')
+def matter_detail(request, pk):
+    matter = get_object_or_404(Matter, pk=int(pk))
+    user = request.user
+    is_admin = user.is_staff
+    context = {'matter': matter, 'is_admin': is_admin}
+    return render(request, 'matter_detail.html', context)
+
+@login_required(login_url='login')
 def update_matter(request, pk):
     user = request.user
 
@@ -96,15 +104,18 @@ def update_matter(request, pk):
         raise Http404("You do not have the permission to update this matter")
 
 
-
-
 @login_required(login_url='login')
-def matter_detail(request, pk):
-    matter = get_object_or_404(Matter, pk=int(pk))
-    user = request.user
-    is_admin = user.is_staff
-    context = {'matter': matter, 'is_admin': is_admin}
-    return render(request, 'matter_detail.html', context)
+def delete_matter(request, matter_id):
+    matter = get_object_or_404(Matter, pk=matter_id)
+    if request.user.is_staff or request.user == matter.current_lawyer.user or request.user == matter.original_lawyer.user:
+        matter.delete()
+        messages.success(request, 'Matter deleted successfully.')
+        return redirect('matters')
+    else:
+        messages.error(request, 'You are not authorized to delete this Matter.')
+        return redirect('matter_detail', matter_id=matter_id)
+
+
 
 @login_required(login_url='login')
 def matter_tasks(request, pk):

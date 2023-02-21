@@ -1,8 +1,11 @@
 <h1>Matter Detail</h1>
 
-
 <p>Matter ID: {{ matter.id }}</p>
 <p>Matter Title: {{ matter.title }}</p>
 <p>Matter Description: {{ matter.description }}</p>
 
 <a href="{% url 'matter_tasks' matter.id %}">Tasks related to this Matter</a>
+
+
+<a href="{% url 'update_matter' matter.id %}">Update Matter</a>
+
