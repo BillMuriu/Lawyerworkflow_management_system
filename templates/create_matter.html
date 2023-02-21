@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 
-<!-- load the static css and js files -->
+
 {% load static %}
 
 
@@ -131,14 +131,23 @@
         </div>
 
         <ul class="list-items">
-            {% for client in individual_clients %}
+
+            {% for participants in form.participants %}
+                <li class="item">
+                    <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                    </span>
+                    <span class="item-text">{{ participants }}</span>
+                </li>
+            {% endfor %}
+            <!-- {% for client in individual_clients %}
                 <li class="item">
                     <span class="checkbox">
                         <i class="fa-solid fa-check check-icon"></i>
                     </span>
                     <span class="item-text">{{ client }}</span>
                 </li>
-            {% endfor %}
+            {% endfor %} -->
       
         </ul>
       </div>
@@ -167,6 +176,7 @@
       <button>Submit</button>
     </form>
 </section>
+
 
 
 {% endblock %}
