@@ -76,7 +76,7 @@
                 <select>
                   <option hidden>Original Lawyer</option>
                   
-                  {% for lawyer in form.lawyers %}
+                  {% for lawyer in form.original_lawyer %}
                     <option>{{ lawyer }}</option>
                   {% endfor %}
                 </select>
@@ -88,8 +88,8 @@
             <div class="select-box">
                 <select>
                   <option hidden>Active Lawyer</option>
-                  {% for lawyer in form.lawyers %}
-                  <option>{{ lawyer }}</option>
+                 {% for lawyer in form.current_lawyer %}
+                    <option>{{ lawyer }}</option>
                   {% endfor %}
                 </select>
             </div>
