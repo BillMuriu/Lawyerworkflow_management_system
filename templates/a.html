@@ -18,21 +18,17 @@
         {{ form.description }}
       </div>
 
-      <label for="">Category</label>
+      <label for="{{ form.category.id_for_label }}">Type</label>
       <div class="column">
         <div class="select-box">
-          <select>
-            <option hidden></option>
-            <option>Active</option>
-            <option>Closed</option>
-          </select>
+          {{ form.category }}
         </div>
       </div>
 
       <div class="column">
         <div class="input-box">
-          <label>ref code</label>
-          <input type="number" placeholder="Enter a reference code" required />
+            <label for="{{ form.ref_code.id_for_label }}">Reference Code</label>
+            {{ form.ref_code }}
         </div>
       </div>
 
@@ -40,36 +36,24 @@
 
       <div class="column">
         <div class="input-box">
-            <label>start date</label>
-            <input type="date" placeholder="Enter birth date" required />
+            <label for="{{ form.open_date.id_for_label }}">Open Date</label>
+            {{ form.open_date }}
           </div>
         <div class="input-box">
-          <label>close date</label>
-          <input type="date" placeholder="Enter birth date" />
+            <label for="{{ form.close_date.id_for_label }}">Close Date</label>
+            {{ form.close_date }}
         </div>
       </div>
 
       <div class="column">
         <div class="input-box">
-            <label>Original Lawyer</label>
-            <div class="select-box">
-                <select>
-                  <option hidden>Original Lawyer</option>
-                  <option>Active</option>
-                  <option>Closed</option>
-                </select>
-            </div>
+            <label for="{{ form.original_lawyer.id_for_label }}">Original Lawyer</label>
+            {{ form.original_lawyer }}
         </div>
 
         <div class="input-box">
-            <label>Active Lawyer</label>
-            <div class="select-box">
-                <select>
-                  <option hidden>Active Lawyer</option>
-                  <option>Active</option>
-                  <option>Closed</option>
-                </select>
-            </div>
+            <label for="{{ form.current_lawyer.id_for_label }}">Current Lawyer</label>
+            {{ form.current_lawyer }}
         </div>
       </div>
       
@@ -84,22 +68,7 @@
 
         <ul class="list-items">
             <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">HTML & CSS</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">Bootstrap</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">JavaScript</span>
+                {{ form.participants }}
             </li>
       
         </ul>
@@ -123,22 +92,7 @@
 
         <ul class="list-items">
             <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">HTML & CSS</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">Bootstrap</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">JavaScript</span>
+                {{ form.individual_client }}
             </li>
       
         </ul>
@@ -155,24 +109,8 @@
 
         <ul class="list-items">
             <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">HTML & CSS</span>
+                {{ form.business_client }}
             </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">Bootstrap</span>
-            </li>
-            <li class="item">
-                <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                </span>
-                <span class="item-text">JavaScript</span>
-            </li>
-      
         </ul>
       </div>
       <button>Submit</button>
