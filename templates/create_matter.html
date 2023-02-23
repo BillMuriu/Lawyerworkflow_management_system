@@ -39,18 +39,18 @@
       <div class="column">
         <div class="select-box">
           <select>
-            <option hidden></option>
-            <option>Active</option>
-            <option>Closed</option>
+            <option hidden>category</option>
+            
+            {% for category in form.category %}
+              <option>{{ category }}</option>
+            {% endfor %}
           </select>
-            {{ form.category }} 
         </div>
       </div>
 
       <div class="column">
         <div class="input-box">
           <label>ref code</label>
-            <input type="text" placeholder="Enter ref code" required />
             {{ form.ref_code }}
         </div>
       </div>
@@ -60,7 +60,6 @@
       <div class="column">
         <div class="input-box">
             <label>start date</label>
-            <input type="date" placeholder="Enter birth date" />
             {{ form.start_date }}
           </div>
         <div class="input-box">
@@ -76,7 +75,8 @@
             <div class="select-box">
                 <select>
                   <option hidden>Original Lawyer</option>
-                  {% for lawyer in lawyers %}
+                  
+                  {% for lawyer in form.lawyers %}
                     <option>{{ lawyer }}</option>
                   {% endfor %}
                 </select>
@@ -88,9 +88,9 @@
             <div class="select-box">
                 <select>
                   <option hidden>Active Lawyer</option>
-                    {% for lawyer in lawyers %}
-                        <option>{{ lawyer }}</option>
-                    {% endfor %}
+                  {% for lawyer in form.lawyers %}
+                  <option>{{ lawyer }}</option>
+                  {% endfor %}
                 </select>
             </div>
         </div>
