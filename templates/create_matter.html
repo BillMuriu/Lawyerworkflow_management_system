@@ -18,9 +18,13 @@
         <label for="{{ form.description.id_for_label }}">Description:</label>
         {{ form.description }}
       </div>
+        <label for="{{ form.type.id_for_label }}">Type</label>
+        <div class="column">
+          <div class="select-box">
+              {{ form.type }}                   
+          </div>
+        </div>
       <div>
-        <label for="{{ form.type.id_for_label }}">Type:</label>
-        {{ form.type }}
       </div>
       <div>
         <label for="{{ form.category.id_for_label }}">Category:</label>
@@ -63,7 +67,7 @@
         {{ form.business_client }}
       </div>
           <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+      </form>
 
     </section>
 
