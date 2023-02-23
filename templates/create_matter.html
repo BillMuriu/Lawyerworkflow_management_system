@@ -1,63 +1,71 @@
-<h1>Matter Creation Form</h1>
+{% extends 'main.html' %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <div>
-  <label for="{{ form.title.id_for_label }}">Title:</label>
-  {{ form.title }}
-</div>
-<div>
-  <label for="{{ form.description.id_for_label }}">Description:</label>
-  {{ form.description }}
-</div>
-<div>
-  <label for="{{ form.type.id_for_label }}">Type:</label>
-  {{ form.type }}
-</div>
-<div>
-  <label for="{{ form.category.id_for_label }}">Category:</label>
-  {{ form.category }}
-</div>
-<div>
-  <label for="{{ form.ref_code.id_for_label }}">Reference Code:</label>
-  {{ form.ref_code }}
-</div>
-<div>
-  <label for="{{ form.open_date.id_for_label }}">Open Date:</label>
-  {{ form.open_date }}
-</div>
-<div>
-  <label for="{{ form.close_date.id_for_label }}">Close Date:</label>
-  {{ form.close_date }}
-</div>
-<div>
-  <label for="{{ form.original_lawyer.id_for_label }}">Original Lawyer:</label>
-  {{ form.original_lawyer }}
-</div>
-<div>
-  <label for="{{ form.current_lawyer.id_for_label }}">Current Lawyer:</label>
-  {{ form.current_lawyer }}
-</div>
-<div>
-  <label for="{{ form.participants.id_for_label }}">Participants:</label>
-  {{ form.participants }}
-</div>
-<div>
-  <label for="{{ form.private.id_for_label }}">Private:</label>
-  {{ form.private }}
-</div>
-<div>
-  <label for="{{ form.individual_client.id_for_label }}">Individual Client:</label>
-  {{ form.individual_client }}
-</div>
-<div>
-  <label for="{{ form.business_client.id_for_label }}">Business Client:</label>
-  {{ form.business_client }}
-</div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+{% load static %}
 
 
 
+{% block content %}
+
+<section class="container2">
+  <header>Registration Form</header>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div>
+        <label for="{{ form.title.id_for_label }}">Title:</label>
+        {{ form.title }}
+      </div>
+      <div>
+        <label for="{{ form.description.id_for_label }}">Description:</label>
+        {{ form.description }}
+      </div>
+      <div>
+        <label for="{{ form.type.id_for_label }}">Type:</label>
+        {{ form.type }}
+      </div>
+      <div>
+        <label for="{{ form.category.id_for_label }}">Category:</label>
+        {{ form.category }}
+      </div>
+      <div>
+        <label for="{{ form.ref_code.id_for_label }}">Reference Code:</label>
+        {{ form.ref_code }}
+      </div>
+      <div>
+        <label for="{{ form.open_date.id_for_label }}">Open Date:</label>
+        {{ form.open_date }}
+      </div>
+      <div>
+        <label for="{{ form.close_date.id_for_label }}">Close Date:</label>
+        {{ form.close_date }}
+      </div>
+      <div>
+        <label for="{{ form.original_lawyer.id_for_label }}">Original Lawyer:</label>
+        {{ form.original_lawyer }}
+      </div>
+      <div>
+        <label for="{{ form.current_lawyer.id_for_label }}">Current Lawyer:</label>
+        {{ form.current_lawyer }}
+      </div>
+      <div>
+        <label for="{{ form.participants.id_for_label }}">Participants:</label>
+        {{ form.participants }}
+      </div>
+      <div>
+        <label for="{{ form.private.id_for_label }}">Private:</label>
+        {{ form.private }}
+      </div>
+      <div>
+        <label for="{{ form.individual_client.id_for_label }}">Individual Client:</label>
+        {{ form.individual_client }}
+      </div>
+      <div>
+        <label for="{{ form.business_client.id_for_label }}">Business Client:</label>
+        {{ form.business_client }}
+      </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    </section>
 
 
+{% endblock %}
