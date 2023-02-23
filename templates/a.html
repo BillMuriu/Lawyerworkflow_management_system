@@ -1,0 +1,130 @@
+<section class="container2">
+    <header>Matter Creation Form</header>
+    <form action="{% url 'matters' %}" class="form" method="POST">
+        {% csrf_token %}
+    
+      <label for="">Type</label>
+      <div class="column">
+        <div class="select-box">
+          <select>
+
+            <option hidden>Type</option>
+              <option>matter_type</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-box">
+        <label>Title</label>
+      </div>
+
+      <div class="input-box">
+        <label>Description</label>
+    </div>
+    
+
+      <label for="">Category</label>
+      <div class="column">
+        <div class="select-box">
+          <select>
+            <option hidden>category</option>
+            <option>{{ category }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="input-box">
+          <label>ref code</label>
+        </div>
+      </div>
+
+
+
+      <div class="column">
+          <div class="input-box">
+            <label>start date</label>
+          </div>
+          <div class="input-box">
+            <label>Close date</label>
+          </div>          
+      </div>
+
+      <div class="column">
+        <div class="input-box">
+            <label>Original Lawyer</label>
+            <div class="select-box">
+                <select>
+                  <option hidden>Original Lawyer</option>
+                    <option>original lawyer</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="input-box">
+            <label>Active Lawyer</label>
+            <div class="select-box">
+                <select>
+                  <option hidden>Active Lawyer</option>
+                    <option>current</option>
+                </select>
+            </div>
+        </div>
+      </div>
+      
+      <div class="gender-box">
+        <h3>Participants</h3>
+        <div class="select-btn" id="select-btn-1">
+          <span class="btn-text">Select Language</span>
+          <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </div>
+
+        <ul class="list-items">
+                <li class="item">
+                    <span class="item-text">participants</span>
+                </li>
+        </ul>
+      </div>
+
+      <h3>Private</h3>
+
+
+      <div class="gender-box">
+        <h3>Individual Client</h3>
+        <div class="select-btn" id="select-btn-2">
+          <span class="btn-text">Select Client</span>
+          <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </div>
+
+        <ul class="list-items">
+                <li class="item">
+                    <span class="item-text">individuals</span>
+                </li>
+        </ul>
+      </div>
+
+      <div class="gender-box">
+        <h3>Business Client</h3>
+        <div class="select-btn" id="select-btn-3">
+          <span class="btn-text">Select Language</span>
+          <span class="arrow-dwn">
+              <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </div>
+
+        <ul class="list-items">
+                <li class="item">
+                    <span class="item-text">client</span>
+                </li>
+
+      
+        </ul>
+      </div>
+      <button>
+        <input type="submit" name="Submit">
+      </button>
+    </form>
+</section>
