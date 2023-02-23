@@ -8,68 +8,116 @@
 
 <section class="container2">
   <header>Registration Form</header>
-    <form action="" method="POST" class="form">
-      {% csrf_token %}
-      <div>
-        <label for="{{ form.title.id_for_label }}">Title:</label>
-        {{ form.title }}
+  <form action="#" class="form" method="POST">
+  
+    <label for="{{ form.type.id_for_label }}">Type</label>
+    <div class="column">
+      <div class="select-box">
+        {{ form.type }}
       </div>
-      <div>
-        <label for="{{ form.description.id_for_label }}">Description:</label>
-        {{ form.description }}
-      </div>
-        <label for="{{ form.type.id_for_label }}">Type</label>
-        <div class="column">
-          <div class="select-box">
-              {{ form.type }}                   
-          </div>
-        </div>
-      <div>
-      </div>
-      <div>
-        <label for="{{ form.category.id_for_label }}">Category:</label>
+    </div>
+    <div class="input-box">
+      <label for="{{ form.title.id_for_label }}">Title</label>
+      {{ form.title }}
+    </div>
+
+    <div class="input-box">
+      <label for="{{ form.description.id_for_label }}">Description</label>
+      {{ form.description }}
+    </div>
+
+    <label for="{{ form.category.id_for_label }}">Type</label>
+    <div class="column">
+      <div class="select-box">
         {{ form.category }}
       </div>
-      <div>
-        <label for="{{ form.ref_code.id_for_label }}">Reference Code:</label>
-        {{ form.ref_code }}
-      </div>
-      <div>
-        <label for="{{ form.open_date.id_for_label }}">Open Date:</label>
-        {{ form.open_date }}
-      </div>
-      <div>
-        <label for="{{ form.close_date.id_for_label }}">Close Date:</label>
-        {{ form.close_date }}
-      </div>
-      <div>
-        <label for="{{ form.original_lawyer.id_for_label }}">Original Lawyer:</label>
-        {{ form.original_lawyer }}
-      </div>
-      <div>
-        <label for="{{ form.current_lawyer.id_for_label }}">Current Lawyer:</label>
-        {{ form.current_lawyer }}
-      </div>
-      <div>
-        <label for="{{ form.participants.id_for_label }}">Participants:</label>
-        {{ form.participants }}
-      </div>
-      <div>
-        <label for="{{ form.private.id_for_label }}">Private:</label>
-        {{ form.private }}
-      </div>
-      <div>
-        <label for="{{ form.individual_client.id_for_label }}">Individual Client:</label>
-        {{ form.individual_client }}
-      </div>
-      <div>
-        <label for="{{ form.business_client.id_for_label }}">Business Client:</label>
-        {{ form.business_client }}
-      </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+    </div>
 
-    </section>
+    <div class="column">
+      <div class="input-box">
+          <label for="{{ form.ref_code.id_for_label }}">Reference Code</label>
+          {{ form.ref_code }}
+      </div>
+    </div>
+
+
+
+    <div class="column">
+      <div class="input-box">
+          <label for="{{ form.open_date.id_for_label }}">Open Date</label>
+          {{ form.open_date }}
+        </div>
+      <div class="input-box">
+          <label for="{{ form.close_date.id_for_label }}">Close Date</label>
+          {{ form.close_date }}
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="input-box">
+          <label for="{{ form.original_lawyer.id_for_label }}">Original Lawyer</label>
+          {{ form.original_lawyer }}
+      </div>
+
+      <div class="input-box">
+          <label for="{{ form.current_lawyer.id_for_label }}">Current Lawyer</label>
+          {{ form.current_lawyer }}
+      </div>
+    </div>
+    
+    <div class="gender-box">
+      <h3>Participants</h3>
+      <div class="select-btn" id="select-btn-1">
+        <span class="btn-text">Select Language</span>
+        <span class="arrow-dwn">
+            <i class="fa-solid fa-chevron-down"></i>
+        </span>
+      </div>
+
+      <ul class="list-items">
+        {{ form.participants }}
+      </ul>
+    </div>
+
+    <div class="checkbox-container">
+      <input type="checkbox" id="cb1" disabled checked>
+      <label for="cb1">Checkbox 1</label>
+    </div>
+
+
+
+    <div class="gender-box">
+      <h3>Individual Client</h3>
+      <div class="select-btn" id="select-btn-2">
+        <span class="btn-text">Select Language</span>
+        <span class="arrow-dwn">
+            <i class="fa-solid fa-chevron-down"></i>
+        </span>
+      </div>
+
+      <ul class="list-items">
+        {{ form.individual_client }}
+      </ul>
+    </div>
+
+    <div class="gender-box">
+      <h3>Business Client</h3>
+      <div class="select-btn" id="select-btn-3">
+        <span class="btn-text">Select Language</span>
+        <span class="arrow-dwn">
+            <i class="fa-solid fa-chevron-down"></i>
+        </span>
+      </div>
+
+      <ul class="list-items">
+        {{ form.business_client }}
+      </ul>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</section>
+
+          
 
 
 {% endblock %}
