@@ -9,6 +9,7 @@
 <section class="container2">
   <header>Registration Form</header>
   <form action="#" class="form" method="POST">
+    {% csrf_token %}
   
     <label for="{{ form.type.id_for_label }}">Type</label>
     <div class="column">
