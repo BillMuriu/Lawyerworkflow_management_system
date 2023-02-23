@@ -1,7 +1,8 @@
 <h1>Matter Creation Form</h1>
 
-
-<div>
+<form action="" method="POST">
+    {% csrf_token %}
+    <div>
   <label for="{{ form.title.id_for_label }}">Title:</label>
   {{ form.title }}
 </div>
@@ -53,6 +54,8 @@
   <label for="{{ form.business_client.id_for_label }}">Business Client:</label>
   {{ form.business_client }}
 </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 
 
