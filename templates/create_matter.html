@@ -58,15 +58,14 @@
 
 
       <div class="column">
-        <div class="input-box">
+          <div class="input-box">
             <label>start date</label>
-            {{ form.start_date }}
+            {{ form.open_date }}
           </div>
-        <div class="input-box">
-          <label>close date</label>
-            <input type="date" placeholder="Enter birth date" />
-            {{ form.close_date }}
-        </div>
+          <div class="input-box">
+            <label>Close date</label>
+            <input type="date" placeholder="Enter close date" value="{{ form.close_date.value|date:'Y-m-d' }}" />
+          </div>          
       </div>
 
       <div class="column">
@@ -106,11 +105,8 @@
         </div>
 
         <ul class="list-items">
-            {% for participant in participants %}
+            {% for participant in form.participants %}
                 <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
                     <span class="item-text">{{ participant }}</span>
                 </li>
             {% endfor %}
@@ -132,22 +128,11 @@
 
         <ul class="list-items">
 
-            {% for participants in form.participants %}
+            {% for individuals in form.individual_client %}
                 <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">{{ participants }}</span>
+                    <span class="item-text">{{ individuals }}</span>
                 </li>
             {% endfor %}
-            <!-- {% for client in individual_clients %}
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text">{{ client }}</span>
-                </li>
-            {% endfor %} -->
       
         </ul>
       </div>
@@ -162,18 +147,15 @@
         </div>
 
         <ul class="list-items">
-            {% for client in business_clients %}
+            {% for client in form.business_client %}
                 <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
                     <span class="item-text">{{ client }}</span>
                 </li>
             {% endfor %}
       
         </ul>
       </div>
-      <button>Submit</button>
+      <button type="submit">Submit</button>
     </form>
 </section>
 
