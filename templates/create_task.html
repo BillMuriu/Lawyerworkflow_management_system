@@ -20,23 +20,14 @@
         <label for="{{ form.description.id_for_label }}">Description</label>
         {{ form.description }}
       </div>
-      <label for="{{ form.type.id_for_label }}">Type</label>
-      <div class="column">
-        <div class="select-box">
-          {{ form. }}
-        </div>
+      <div class="input-box">
+        <label for="{{ form.due_date.id_for_label }}">Due date</label>
+        {{ form.due_date }}
       </div>
-      
-  
-      
-  
-      <label for="{{ form.category.id_for_label }}">Type</label>
-      <div class="column">
-        <div class="select-box">
-          {{ form.category }}
-        </div>
-      </div>
-  
+     <div class="input-box">
+         <label for="{{ form.priority.id_for_label }}">Priority</label>
+         {{ form.priority }}
+     </div>
       <div class="column">
         <div class="input-box">
             <label for="{{ form.ref_code.id_for_label }}">Reference Code</label>
