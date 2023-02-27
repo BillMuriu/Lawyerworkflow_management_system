@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.db import migrations
 from django.db.models import Q
 from django.contrib import messages
@@ -202,6 +203,20 @@ def tasks(request):
     is_admin = user.is_staff
     context = {'tasks': tasks, 'is_admin': is_admin}
     return render(request, 'tasks.html', context)
+
+
+################################ create_event function
+
+@login_required(login_url='login')
+def create_event(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save()
+            return redirect(reverse('event-detail', args=[event.id]))
+    else:
+        form = EventForm()
+    return render(request, 'event_create.html', {'form': form})
 
 
 @login_required(login_url='login')
