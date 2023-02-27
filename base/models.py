@@ -140,13 +140,15 @@ class Event(models.Model):
     end_date = models.DateTimeField()
     priority = models.CharField(max_length=200, choices=PRIORITY_CHOICES, default='Low')
     matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
-    assigned_to = models.CharField(max_length=200) # this should be a user
+    assigned_to = models.ManyToManyField(User, blank=True, related_name='assigned_events')
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_events', blank=True, null=True)
     private = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
+
 
 
 

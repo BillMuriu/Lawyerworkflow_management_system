@@ -216,18 +216,19 @@ def events(request):
 
 @login_required(login_url='login')
 def create_event(request):
-    context = {}
     if request.method == 'POST':
         form = EventForm(request.POST)
         if form.is_valid():
-            event = form.save()
+            event = form.save(commit=False)
+            event.created_by = request.user
+            event.save()
+            form.save_m2m()
             return redirect('events')
-        else:
-            context['form'] = form
     else:
         form = EventForm()
-        context['form'] = form
+    context = {'form': form}
     return render(request, 'create_event.html', context)
+
 
 
 
