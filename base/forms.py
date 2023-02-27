@@ -34,3 +34,8 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['name', 'description', 'start_date', 'end_date', 'priority', 'matter', 'assigned_to', 'private']
+        widgets = {
+            'start_date': forms.SelectDateWidget,
+            'end_date': forms.SelectDateWidget,
+            'assigned_to': forms.CheckboxSelectMultiple(),
+        }

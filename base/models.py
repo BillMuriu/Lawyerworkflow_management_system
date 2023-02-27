@@ -136,8 +136,8 @@ class Event(models.Model):
 
     name = models.CharField(max_length=200)
     description = models.TextField()
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField()
     priority = models.CharField(max_length=200, choices=PRIORITY_CHOICES, default='Low')
     matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
     assigned_to = models.CharField(max_length=200) # this should be a user
