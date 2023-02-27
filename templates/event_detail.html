@@ -9,4 +9,6 @@
 
 {% if user == event.created_by %}
     <a href="{% url 'update_event' event.id %}">Update event</a>
+    <br>
+    <a href="{% url 'delete_event' event.id %}">Delete event</a>
 {% endif %}

@@ -277,19 +277,14 @@ def update_event(request, event_id):
 @login_required(login_url='login')
 def delete_event(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
-
-    # Only allow the creator of the event to delete it
-    if request.user != event.created_by:
-        messages.error(request, 'You are not authorized to delete this event.')
+    if request.user == event.created_by:
+        event.delete()
+        messages.success(request, 'Event deleted successfully.')
+        return redirect('events')
+    else:
+        messages.error(request, 'You are not authorized to delete this Event.')
         return redirect('event_detail', event_id=event_id)
 
-    if request.method == 'POST':
-        event.delete()
-        messages.success(request, 'Event has been deleted.')
-        return redirect('events')
-
-    context = {'event': event}
-    return render(request, 'delete_event.html', context)
 
 
 
