@@ -12,7 +12,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from .models import *
 from .decorators import unauthenticated_user
-from .forms import TaskForm, MatterForm
+from .forms import TaskForm, MatterForm, EventForm
 
 # Create your views here.
 

@@ -28,3 +28,9 @@ class MatterForm(forms.ModelForm):
             'close_date': forms.SelectDateWidget,
             'participants': forms.CheckboxSelectMultiple(),
         }
+
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['name', 'description', 'start_date', 'end_date', 'priority', 'matter', 'assigned_to', 'private']
