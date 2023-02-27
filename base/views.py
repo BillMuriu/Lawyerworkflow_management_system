@@ -233,6 +233,19 @@ def create_event(request):
     context = {'form': form}
     return render(request, 'create_event.html', context)
 
+from django.shortcuts import get_object_or_404
+
+@login_required(login_url='login')
+def event_detail(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    # Check if the user is the creator or assignee of the event
+    if request.user == event.created_by or request.user in event.assigned_to.all():
+        context = {'event': event}
+        return render(request, 'event_detail.html', context)
+    else:
+        return HttpResponse('You are not authorized to view this event.')
+
+
 
 
 
