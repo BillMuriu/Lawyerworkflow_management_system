@@ -153,12 +153,20 @@ class Event(models.Model):
 
 
 class Document(models.Model):
+
+    CATEGORY_CHOICES = (
+        ('Statutes', 'Statutes'),
+        ('Letters', 'Letters'),
+        ('Case Law', 'Case Law'),
+    )
+
     name = models.CharField(max_length=200)
+    link = models.URLField( max_length=200, blank=True, null=True)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
-    category = models.CharField(max_length=200)
+    category = models.CharField(max_length=200, choices=CATEGORY_CHOICES)
 
     def __str__(self):
         return self.name
