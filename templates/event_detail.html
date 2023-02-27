@@ -7,4 +7,6 @@
 <p><strong>End Date:</strong> {{ event.end_date }}</p>
 <p><strong>Priority:</strong> {{ event.priority }}</p>
 
-
+{% if user == event.created_by %}
+    <a href="{% url 'update_event' event.id %}">Update event</a>
+{% endif %}
