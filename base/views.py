@@ -208,6 +208,13 @@ def tasks(request):
 ################################ create_event function
 
 @login_required(login_url='login')
+def events(request):
+    events = Event.objects.all()
+    context = {'events': events}
+    return render(request, 'events.html', context)
+
+
+@login_required(login_url='login')
 def create_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
@@ -217,7 +224,8 @@ def create_event(request):
     else:
         form = EventForm()
         context = {'form': form}
-    return render(request, 'create_create.html', context)
+    return render(request, 'create_event.html', context)
+
 
 
 @login_required(login_url='login')
