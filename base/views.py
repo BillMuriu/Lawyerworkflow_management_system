@@ -213,10 +213,11 @@ def create_event(request):
         form = EventForm(request.POST)
         if form.is_valid():
             event = form.save()
-            return redirect(reverse('event-detail', args=[event.id]))
+            return redirect('events')
     else:
         form = EventForm()
-    return render(request, 'event_create.html', {'form': form})
+        context = {'form': form}
+    return render(request, 'create_create.html', context)
 
 
 @login_required(login_url='login')

@@ -30,4 +30,9 @@ urlpatterns = [
     path('update_task/<int:task_id>/', views.update_task, name='update_task'),
     path('delete_task/<int:task_id>/', views.delete_task, name='delete_task'),
 
+    #Events
+
+    path('events/', views.events, name='events'),
+    path('create_event/', views.create_event, name='create_event'),
+
 ]
