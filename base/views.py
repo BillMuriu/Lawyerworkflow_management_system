@@ -251,6 +251,27 @@ def event_detail(request, event_id):
         return redirect('events')
 
     
+@login_required(login_url='login')
+def update_event(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+
+    if request.user != event.created_by:
+        messages.error(request, 'You are not authorized to update this event.')
+        return redirect('event_detail', event_id=event_id)
+
+    if request.method == 'POST':
+        form = EventForm(request.POST, instance=event)
+        if form.is_valid():
+            event = form.save()
+            assigned_users = form.cleaned_data['assigned_to']
+            event.assigned_to.set(assigned_users)
+            form.save_m2m()
+            return redirect('event_detail', event_id=event_id)
+    else:
+        form = EventForm(instance=event)
+
+    context = {'form': form, 'event': event}
+    return render(request, 'update_event.html', context)
 
 
 
