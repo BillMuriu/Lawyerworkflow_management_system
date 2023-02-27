@@ -209,9 +209,13 @@ def tasks(request):
 
 @login_required(login_url='login')
 def events(request):
-    events = Event.objects.all()
+    user = request.user
+    created_events = Event.objects.filter(created_by=user)
+    assigned_events = Event.objects.filter(assigned_to=user)
+    events = (created_events | assigned_events).distinct().order_by('-created_at')
     context = {'events': events}
     return render(request, 'events.html', context)
+
 
 
 @login_required(login_url='login')
