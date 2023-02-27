@@ -237,13 +237,20 @@ from django.shortcuts import get_object_or_404
 
 @login_required(login_url='login')
 def event_detail(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
-    # Check if the user is the creator or assignee of the event
-    if request.user == event.created_by or request.user in event.assigned_to.all():
+    event = get_object_or_404(Event, pk=event_id)
+
+    # check if the user is assigned to the event or is the creator of the event
+    is_assigned = request.user in event.assigned_to.all()
+    is_creator = request.user == event.created_by
+
+    if is_assigned or is_creator:
         context = {'event': event}
         return render(request, 'event_detail.html', context)
     else:
-        return HttpResponse('You are not authorized to view this event.')
+        messages.error(request, 'You are not authorized to view this event.')
+        return redirect('events')
+
+    
 
 
 
