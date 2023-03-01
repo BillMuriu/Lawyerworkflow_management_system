@@ -7,13 +7,13 @@ from django.db import migrations
 from django.db.models import Q
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound, Http404
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, DocumentForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 
 from .models import *
 from .decorators import unauthenticated_user
-from .forms import TaskForm, MatterForm, EventForm
+from .forms import TaskForm, MatterForm, EventForm, DocumentForm
 
 # Create your views here.
 
@@ -305,7 +305,7 @@ def create_document(request):
     context = {
         'form': form,
     }
-    return render(request, 'document_create.html', context)
+    return render(request, 'create_document.html', context)
 
 
 
