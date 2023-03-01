@@ -161,15 +161,17 @@ class Document(models.Model):
     )
 
     name = models.CharField(max_length=200)
-    link = models.URLField( max_length=200, blank=True, null=True)
+    link = models.URLField()
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
     category = models.CharField(max_length=200, choices=CATEGORY_CHOICES)
+    file = models.FileField(upload_to='documents/')
 
     def __str__(self):
         return self.name
+
 
 
 

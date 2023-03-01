@@ -286,6 +286,10 @@ def delete_event(request, event_id):
         return redirect('event_detail', event_id=event_id)
 
 
+
+
+
+
 @login_required(login_url='login')
 def home(request):
     return render(request, 'home.html')
