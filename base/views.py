@@ -286,20 +286,6 @@ def delete_event(request, event_id):
         return redirect('event_detail', event_id=event_id)
 
 
-def create_document(request):
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            document = form.save(commit=False)
-            document.save()
-            return redirect('document_detail', document_id=document.id)
-    else:
-        form = DocumentForm()
-    return render(request, 'document_create.html', {'form': form})
-
-
-
-
 @login_required(login_url='login')
 def home(request):
     return render(request, 'home.html')
