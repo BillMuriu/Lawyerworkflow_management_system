@@ -13,7 +13,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from .models import *
 from .decorators import unauthenticated_user
-from .forms import TaskForm, MatterForm, EventForm, DocumentForm
+from .forms import TaskForm, MatterForm, EventForm, DocumentForm, NoteForm
 
 # Create your views here.
 
@@ -317,6 +317,19 @@ def document_detail(request, document_id):
 
 
 ######################### The note views
+
+def create_note(request):
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.save()
+            return redirect('note_detail', pk=note.pk)
+    else:
+        form = NoteForm()
+    context = {'form': form}
+    return render(request, 'create_note.html', context)
+
 
 
 
