@@ -1,1 +1,14 @@
-<h2>This is the note details page</h2>
+<h1>Note Details</h1>
+<p>Category: {{ note.category }}</p>
+<p>Subject: {{ note.subject }}</p>
+<p>Description: {{ note.description }}</p>
+<p>Created At: {{ note.created_at }}</p>
+<p>Updated At: {{ note.updated_at }}</p>
+{% if note.private %}
+<p>Private: Yes</p>
+{% else %}
+<p>Private: No</p>
+{% endif %}
+{% if note.matter %}
+<p>Matter: {{ note.matter.name }}</p>
+{% endif %}
