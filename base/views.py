@@ -308,6 +308,14 @@ def create_document(request):
     return render(request, 'create_document.html', context)
 
 
+@login_required(login_url='login')
+def document_detail(request, document_id):
+    document = get_object_or_404(Document, pk=document_id)
+    context = {'document': document}
+    return render(request, 'document_detail.html', context)
+
+
+
 
 
 

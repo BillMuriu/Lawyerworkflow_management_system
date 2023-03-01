@@ -38,4 +38,9 @@ urlpatterns = [
     path('update_event/<int:event_id>/', views.update_event, name='update_event'),
     path('delete_event/<int:event_id>/', views.delete_event, name='delete_event'),
 
+
+    #Documents
+    path('create_document/', views.create_document, name='create_document'),
+    path('document_detail/<int:document_id>/', views.document_detail, name='document_detail'),
+
 ]
