@@ -1,5 +1,5 @@
 <h2>Create a new document</h2>
-  <form method="post" enctype="multipart/form-data">
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Create</button>
