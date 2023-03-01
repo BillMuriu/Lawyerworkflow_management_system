@@ -43,4 +43,9 @@ urlpatterns = [
     path('create_document/', views.create_document, name='create_document'),
     path('document_detail/<int:document_id>/', views.document_detail, name='document_detail'),
 
+
+    #Notes
+    path('create_note/', views.create_note, name='create_note'),
+    path('note_detail/<int:note_id>/', views.note_detail, name='note_detail'),
+
 ]

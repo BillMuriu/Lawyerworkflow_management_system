@@ -318,17 +318,26 @@ def document_detail(request, document_id):
 
 ######################### The note views
 
+@login_required(login_url='login')
 def create_note(request):
     if request.method == 'POST':
         form = NoteForm(request.POST)
         if form.is_valid():
             note = form.save(commit=False)
             note.save()
-            return redirect('note_detail', pk=note.pk)
+            return redirect('note_detail', note_id=note.pk)
     else:
         form = NoteForm()
     context = {'form': form}
     return render(request, 'create_note.html', context)
+
+
+@login_required(login_url='login')
+def note_detail(request, note_id):
+    note = get_object_or_404(Note, pk=note_id)
+    context = {'note': note}
+    return render(request, 'note_detail.html', context)
+
 
 
 
