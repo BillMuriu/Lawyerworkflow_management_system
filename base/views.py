@@ -316,6 +316,7 @@ def document_detail(request, document_id):
 
 
 
+######################### The note views
 
 
 

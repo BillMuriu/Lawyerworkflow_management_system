@@ -47,3 +47,9 @@ class DocumentForm(forms.ModelForm):
         fields = ('name', 'link', 'description', 'category', 'file')
 
     file = forms.FileField(required=False)
+
+
+class NoteForm(forms.ModelForm):
+    class Meta:
+        model = Note
+        fields = ['category', 'subject', 'description', 'private', 'matter']
