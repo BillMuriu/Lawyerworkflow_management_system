@@ -1,1 +1,9 @@
-<h3>The document detail</h3>
+  <h1>{{ document.name }}</h1>
+  <p>Category: {{ document.category }}</p>
+  <p>Created at: {{ document.created_at }}</p>
+  <p>Description: {{ document.description }}</p>
+  <p>Link: <a href="{{ document.link }}">{{ document.link }}</a></p>
+  {% if document.file %}
+    <p>File: <a href="{{ document.file.url }}" target="_blank">{{ document.file.name }}</a></p>
+    <p><a href="{{ document.file.url }}" download>Download file</a></p>
+  {% endif %}
