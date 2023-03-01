@@ -7,7 +7,8 @@ from django.db import migrations
 from django.db.models import Q
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound, Http404
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, DocumentForm
+
 
 
 from .models import *
@@ -285,6 +286,26 @@ def delete_event(request, event_id):
         messages.error(request, 'You are not authorized to delete this Event.')
         return redirect('event_detail', event_id=event_id)
 
+
+
+
+
+######################### The document views
+
+@login_required(login_url='login')
+def create_document(request):
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            document = form.save(commit=False)
+            document.save()
+            return redirect('document_detail', document_id=document.id)
+    else:
+        form = DocumentForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'document_create.html', context)
 
 
 
