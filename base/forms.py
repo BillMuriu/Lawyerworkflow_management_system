@@ -39,3 +39,11 @@ class EventForm(forms.ModelForm):
             'end_date': forms.SelectDateWidget,
             'assigned_to': forms.CheckboxSelectMultiple(),
         }
+
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ('name', 'link', 'description', 'category', 'file')
+
+    file = forms.FileField(required=False)
