@@ -75,9 +75,4 @@ class BusinessClientForm(forms.ModelForm):
 class FeeNoteForm(forms.ModelForm):
     class Meta:
         model = FeeNote
-        fields = ['matter', 'description', 'amount', 'date', 'category']
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-        super(FeeNoteForm, self).__init__(*args, **kwargs)
-        self.fields['matter'].queryset = Matter.objects.filter(participants=self.request.user)
+        fields = ('matter', 'individual_client', 'business_client', 'billed_by', 'due_date', 'date_billed', 'billable', 'description')

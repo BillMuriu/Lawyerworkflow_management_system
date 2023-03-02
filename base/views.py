@@ -13,7 +13,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from .models import *
 from .decorators import unauthenticated_user
-from .forms import TaskForm, MatterForm, EventForm, DocumentForm, NoteForm, IndividualClientForm, BusinessClientForm
+from .forms import TaskForm, MatterForm, EventForm, DocumentForm, NoteForm, IndividualClientForm, BusinessClientForm, FeeNoteForm
 
 # Create your views here.
 
@@ -405,7 +405,7 @@ def create_feenote(request):
     context = {
         'form': form,
     }
-    return render(request, 'feenote_create.html', context)
+    return render(request, 'create_feenote.html', context)
 
 
 
