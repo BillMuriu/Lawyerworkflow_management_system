@@ -216,4 +216,15 @@ class FirmDetails(models.Model):
         return self.name
 
    
+class Feenote(models.Model):
+    matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
+    individual_client = models.ForeignKey(IndividualClient, on_delete=models.CASCADE, blank=True, null=True)
+    business_client = models.ForeignKey(BusinessClient, on_delete=models.CASCADE, blank=True, null=True)
+    billed_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    due_date = models.DateField()
+    date_billed = models.DateField()
+    billable = models.BooleanField(default=False)
+    description = models.TextField()
 
+    def __str__(self):
+        return self.name
