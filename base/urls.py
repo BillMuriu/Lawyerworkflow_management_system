@@ -51,5 +51,7 @@ urlpatterns = [
 
     #IndividualClient
     path('create_individual_client/', views.create_individual_client, name='create_individual_client'),
+    path('individual_client_detail/<int:client_id>/', views.individual_client_detail, name='individual_client_detail')
+
 
 ]

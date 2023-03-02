@@ -355,6 +355,13 @@ def create_individual_client(request):
     return render(request, 'create_individual_client.html', context)
 
 
+@login_required(login_url='login')
+def individual_client_detail(request, client_id):
+    client = get_object_or_404(IndividualClient, pk=client_id)
+    context = {'client': client}
+    return render(request, 'individual_client_detail.html', context)
+
+
 
 
 
