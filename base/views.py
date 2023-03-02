@@ -13,7 +13,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from .models import *
 from .decorators import unauthenticated_user
-from .forms import TaskForm, MatterForm, EventForm, DocumentForm, NoteForm, IndividualClientForm
+from .forms import TaskForm, MatterForm, EventForm, DocumentForm, NoteForm, IndividualClientForm, BusinessClientForm
 
 # Create your views here.
 
@@ -368,13 +368,13 @@ def individual_client_detail(request, client_id):
 @login_required(login_url='login')
 def create_business_client(request):
     if request.method == 'POST':
-        form = BussinessClientForm(request.POST)
+        form = BusinessClientForm(request.POST)
         if form.is_valid():
             client = form.save(commit=False)
             client.save()
             return redirect('business_client_detail', client_id=client.id)
     else:
-        form = BussinessClientForm()
+        form = BusinessClientForm()
     context = {'form': form}
     return render(request, 'create_business_client.html', context)
 

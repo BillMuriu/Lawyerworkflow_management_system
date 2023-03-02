@@ -62,3 +62,12 @@ class IndividualClientForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'rows': 5}),
         }
+
+
+class BusinessClientForm(forms.ModelForm):
+    class Meta:
+        model = BusinessClient
+        fields = ['name', 'email', 'primary_phone', 'secondary_phone', 'address', 'website', 'description']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 5}),
+        }
