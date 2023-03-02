@@ -53,3 +53,12 @@ class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ['category', 'subject', 'description', 'private', 'matter']
+
+
+class IndividualClientForm(forms.ModelForm):
+    class Meta:
+        model = IndividualClient
+        fields = ['first_name', 'last_name', 'middle_name', 'email', 'primary_phone', 'secondary_phone', 'address', 'website', 'description']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 5}),
+        }
