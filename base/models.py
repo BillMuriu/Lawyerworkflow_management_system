@@ -236,7 +236,7 @@ class FirmDetails(models.Model):
         return self.name
 
    
-class Feenote(models.Model):
+class FeeNote(models.Model):
     matter = models.ForeignKey(Matter, on_delete=models.CASCADE, blank=True, null=True)
     individual_client = models.ForeignKey(IndividualClient, on_delete=models.CASCADE, blank=True, null=True)
     business_client = models.ForeignKey(BusinessClient, on_delete=models.CASCADE, blank=True, null=True)

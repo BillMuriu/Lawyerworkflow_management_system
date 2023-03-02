@@ -386,6 +386,29 @@ def business_client_detail(request, client_id):
     return render(request, 'business_client_detail.html', context)
 
 
+################### Billing ####################
+
+@login_required(login_url='login')
+def create_feenote(request):
+    if request.method == 'POST':
+        form = FeeNoteForm(request.POST)
+        if form.is_valid():
+            feenote = form.save(commit=False)
+            feenote.billed_by = request.user
+            feenote.save()
+            messages.success(request, 'Fee note created successfully!')
+            return redirect('feenote_detail', feenote.id)
+        else:
+            messages.error(request, 'Failed to create fee note. Please correct the errors below.')
+    else:
+        form = FeeNoteForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'feenote_create.html', context)
+
+
+
 
 
 
