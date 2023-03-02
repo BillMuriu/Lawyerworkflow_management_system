@@ -362,6 +362,30 @@ def individual_client_detail(request, client_id):
     return render(request, 'individual_client_detail.html', context)
 
 
+################### The Business client views ####################
+
+
+@login_required(login_url='login')
+def create_business_client(request):
+    if request.method == 'POST':
+        form = BussinessClientForm(request.POST)
+        if form.is_valid():
+            client = form.save(commit=False)
+            client.save()
+            return redirect('business_client_detail', client_id=client.id)
+    else:
+        form = BussinessClientForm()
+    context = {'form': form}
+    return render(request, 'create_business_client.html', context)
+
+
+@login_required(login_url='login')
+def business_client_detail(request, client_id):
+    client = get_object_or_404(BusinessClient, pk=client_id)
+    context = {'client': client}
+    return render(request, 'business_client_detail.html', context)
+
+
 
 
 
