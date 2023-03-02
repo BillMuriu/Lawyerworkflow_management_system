@@ -66,6 +66,16 @@ class BusinessClient(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            # create a new user for the client
+            user = User.objects.create_user(username=self.email, email=self.email)
+            user.set_password('defaultpassword')
+            user.save()
+            self.user = user
+        super().save(*args, **kwargs)
+
+
 
 
 class Matter(models.Model):
