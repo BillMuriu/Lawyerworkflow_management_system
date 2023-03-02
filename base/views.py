@@ -424,7 +424,7 @@ def add_firmdetails(request):
         form = FirmDetailsForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('firm_details')
+            return redirect(reverse('firm_details', args=[FirmDetails.objects.latest('id').id]))
     else:
         form = FirmDetailsForm()
     context = {
@@ -437,7 +437,7 @@ def add_firmdetails(request):
 def firm_detail(request, firm_id):
     firm = get_object_or_404(FirmDetails, pk=firm_id)
     context = {'firm': firm}
-    return render(request, 'firm_detail.html', context)
+    return render(request, 'firm_details.html', context)
 
 
 

@@ -63,4 +63,8 @@ urlpatterns = [
     path('create_feenote/', views.create_feenote, name='create_feenote'),
     path('feenote_detail/<int:feenote_id>/', views.feenote_detail, name='feenote_detail'),
 
+    #Firmdetails
+    path('add_firmdetails/', views.add_firmdetails, name='add_firmdetails'),
+    path('firm_details/<int:firm_id>/', views.firm_detail, name='firm_details'),
+
 ]
