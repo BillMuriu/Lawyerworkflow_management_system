@@ -76,3 +76,14 @@ class FeeNoteForm(forms.ModelForm):
     class Meta:
         model = FeeNote
         fields = ('matter', 'individual_client', 'business_client', 'billed_by', 'due_date', 'date_billed', 'billable', 'description')
+
+
+class FirmDetailsForm(forms.ModelForm):
+    class Meta:
+        model = FirmDetails
+        fields = ['name', 'tagline', 'email', 'phone', 'website', 'address', 'currency_code', 'tax_pin',
+                  'physical_address', 'bank', 'bank_account_name', 'bank_account_number', 'bank_branch']
+        widgets = {
+            'address': forms.Textarea(attrs={'rows': 3}),
+            'physical_address': forms.Textarea(attrs={'rows': 3})
+        }

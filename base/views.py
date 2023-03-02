@@ -13,7 +13,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from .models import *
 from .decorators import unauthenticated_user
-from .forms import TaskForm, MatterForm, EventForm, DocumentForm, NoteForm, IndividualClientForm, BusinessClientForm, FeeNoteForm
+from .forms import TaskForm, MatterForm, EventForm, DocumentForm, NoteForm, IndividualClientForm, BusinessClientForm, FeeNoteForm, FirmDetailsForm
 
 # Create your views here.
 
@@ -433,7 +433,11 @@ def add_firmdetails(request):
     return render(request, 'add_firmdetails.html', context)
 
 
-
+@login_required(login_url='login')
+def firm_detail(request, firm_id):
+    firm = get_object_or_404(FirmDetails, pk=firm_id)
+    context = {'firm': firm}
+    return render(request, 'firm_detail.html', context)
 
 
 
