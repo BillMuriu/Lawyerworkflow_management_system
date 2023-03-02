@@ -412,7 +412,25 @@ def create_feenote(request):
 def feenote_detail(request, feenote_id):
     feenote = get_object_or_404(FeeNote, pk=feenote_id)
     context = {'feenote': feenote}
-    return render(request, 'feenotes/feenote_detail.html', context)
+    return render(request, 'feenote_detail.html', context)
+
+
+
+################### The FirmDetails ####################
+
+@login_required(login_url='login')
+def add_firmdetails(request):
+    if request.method == 'POST':
+        form = FirmDetailsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('firm_details')
+    else:
+        form = FirmDetailsForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'add_firmdetails.html', context)
 
 
 
