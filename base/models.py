@@ -24,11 +24,11 @@ class Lawyer(models.Model):
 
 
 class IndividualClient(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     middle_name = models.CharField(max_length=200, blank=True)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     primary_phone = models.CharField(max_length=200)
     secondary_phone = models.CharField(max_length=200, blank=True)
     address = models.CharField(max_length=200)
@@ -39,6 +39,7 @@ class IndividualClient(models.Model):
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
 
 
 class BusinessClient(models.Model):
