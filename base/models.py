@@ -197,7 +197,23 @@ class Note(models.Model):
         return self.subject
 
 
+class FirmDetails(models.Model):
+    name = models.CharField(max_length=200)
+    tagline = models.CharField(max_length=200)
+    email = models.EmailField()
+    phone = models.CharField(max_length=200)
+    website = models.URLField()
+    address = models.TextField()
+    currency_code = models.CharField(max_length=200)
+    tax_pin = models.CharField(max_length=200)
+    physical_address = models.TextField()
+    bank = models.CharField(max_length=200)
+    bank_account_name = models.CharField(max_length=200)
+    bank_account_number = models.CharField(max_length=200)
+    bank_branch = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.name
 
    
 
