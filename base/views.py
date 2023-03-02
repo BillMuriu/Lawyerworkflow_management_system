@@ -341,6 +341,19 @@ def note_detail(request, note_id):
 
 ############## The individual client views ####################
 
+@login_required(login_url='login')
+def create_individual_client(request):
+    if request.method == 'POST':
+        form = IndividualClientForm(request.POST)
+        if form.is_valid():
+            client = form.save(commit=False)
+            client.save()
+            return redirect('individual_client_detail', client_id=client.id)
+    else:
+        form = IndividualClientForm()
+    context = {'form': form}
+    return render(request, 'create_individual_client.html', context)
+
 
 
 
