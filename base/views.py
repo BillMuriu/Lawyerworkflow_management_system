@@ -408,6 +408,13 @@ def create_feenote(request):
     return render(request, 'create_feenote.html', context)
 
 
+@login_required(login_url='login')
+def feenote_detail(request, feenote_id):
+    feenote = get_object_or_404(FeeNote, pk=feenote_id)
+    context = {'feenote': feenote}
+    return render(request, 'feenotes/feenote_detail.html', context)
+
+
 
 
 
@@ -415,9 +422,6 @@ def create_feenote(request):
 @login_required(login_url='login')
 def home(request):
     return render(request, 'home.html')
-
-
-
 
 @unauthenticated_user
 def registerPage(request):
